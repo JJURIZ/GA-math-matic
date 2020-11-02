@@ -3,19 +3,51 @@
 /*VARIABLES*/
 let divisionSwitch = true,
     canvas = document.querySelector(".game_canvas"),
-    ctx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d'),
+    bubbleX = 75,
+    bubbleY = 75,
+    bubbleSpeedX = 4,
+    bubbleSpeedY = 8;
 
 window.onload = function() {
 
-    //Sets the canvas background color and area.
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0,0, canvas.width, canvas.height);
+    let framesPerSecond = 30;
+    setInterval(updateAll, 1000/framesPerSecond)
 
-    //Creates an element on the canvas (white ball)
-    ctx.fillStyle = 'white';
-    ctx.beginPath();
-    ctx.arc(100,100,10,0, Math.PI*2, true);
-    ctx.fill();
+}
+
+const updateAll = () => {
+    bubbleX += bubbleSpeedX;
+    bubbleY += bubbleSpeedY;
+
+    if(bubbleX > canvas.width) {
+        bubbleSpeedX *= -1;
+    }
+    if(bubbleX < 0) {
+        bubbleSpeedX *= -1;
+    }
+    if(bubbleY > canvas.height) {
+        bubbleSpeedY *= -1;
+    }
+    if(bubbleY < 0) {
+        bubbleSpeedY *= -1;
+    }
+
+   //Sets the canvas background color and area.
+   ctx.fillStyle = 'black';
+   ctx.fillRect(0,0, canvas.width, canvas.height);
+
+   //Creates an element on the canvas (white ball)
+   ctx.fillStyle = 'red';
+   ctx.beginPath();
+   ctx.arc(bubbleX,bubbleY,20,0, Math.PI*2, true);
+   ctx.fill();
+   //Places text within the cicle
+   ctx.font = '2rem Arial';
+   ctx.fillStyle = 'white';
+   ctx.textAlign = 'center';
+   ctx.fillText('4', bubbleX, bubbleY);
+
 }
 //Random Number Generator
 const randy = (max, min) => {
