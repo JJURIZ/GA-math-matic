@@ -1,3 +1,91 @@
 * {
     background-color: azure;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 62.5%; /*10px / 16px (browser default) -> 1rem = 10px */
+}
+
+.container {
+ width: 75vw;
+ margin: auto;
+}
+
+
+h1 {
+    font-weight: 400;
+    font-size: 3rem;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.header {
+    text-align: center;
+}
+
+.header_main-title {
+    font-size: 6rem;
+    padding-top: 1rem;
+}
+
+.game_state {
+    display: grid;
+    border: 1px solid black;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: ". timer score";
+    justify-content: center;
+}
+
+.timer {
+    grid-area: timer;
+    margin: 0 auto;
+}
+
+.score {
+    grid-area: score;
+    justify-self: end;
+    
+}
+
+.hidden {
+    display: none;
+}
+
+.mathround_main {
+    display: grid;
+    grid-gap: 3rem;
+    /* border: 1px solid black; */
+    height: 80vh;
+    width: 75vw;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas: "question question question question"
+                         "question question question question"
+                         ". answer answer ."
+                         ". answer answer ."
+            ;
+
+}
+
+.mathround_questions {
+    height: 40vh;
+    width: 75vw;
+    border: 1px solid red;
+    background-color: red;
+    grid-area: question;
+}
+
+.mathround_answers {
+    height: 30vh;
+    width: 40vw;
+    background-color: blue;
+    border: 1px solid blue;
+    grid-area: answer;
+}
+
+.score,
+.timer {
+    font-size: 2rem;
 }
