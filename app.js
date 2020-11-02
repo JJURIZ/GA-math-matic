@@ -7,16 +7,23 @@ let divisionSwitch = true,
     bubbleX = 75,
     bubbleY = 75,
     bubbleSpeedX = 4,
-    bubbleSpeedY = 8;
+    bubbleSpeedY = 8,
+    mouseX = 0,
+    mouseY = 0;
 
+/*CANVAS FUNCTION*/
 window.onload = function() {
-
     let framesPerSecond = 30;
-    setInterval(updateAll, 1000/framesPerSecond)
-
+    setInterval(updateAll, 1000/framesPerSecond);
+    canvas.addEventListener('mousemove', mousePosition)
 }
 
 const updateAll = () => {
+    moveAll()
+    drawAll()
+}
+
+const moveAll = () => {
     bubbleX += bubbleSpeedX;
     bubbleY += bubbleSpeedY;
 
@@ -32,78 +39,72 @@ const updateAll = () => {
     if(bubbleY < 0) {
         bubbleSpeedY *= -1;
     }
+}
 
+const drawAll = () => {
    //Sets the canvas background color and area.
-   ctx.fillStyle = 'black';
-   ctx.fillRect(0,0, canvas.width, canvas.height);
-
-   //Creates an element on the canvas (white ball)
-   ctx.fillStyle = 'red';
-   ctx.beginPath();
-   ctx.arc(bubbleX,bubbleY,20,0, Math.PI*2, true);
-   ctx.fill();
+    gameCanvas(0,0,canvas.width, canvas.height, 'black')
+    bubble(bubbleX, bubbleY, 20, 'red')
+    bubbleText('2rem Arial', 'white', 'center', '4');
    //Places text within the cicle
-   ctx.font = '2rem Arial';
-   ctx.fillStyle = 'white';
-   ctx.textAlign = 'center';
-   ctx.fillText('4', bubbleX, bubbleY);
+   mouseText(`${mouseX}, ${mouseY}`, mouseX, mouseY, 'yellow')
+}
+
+const gameCanvas = (topLeftX, topLeftY, boxWidth, boxHeight, fillColor) => {
+    ctx.fillStyle = fillColor;
+    ctx.fillRect(topLeftX, topLeftY, boxWidth, boxHeight);
+}
+
+let bubble = (centerX, centerY, radius, fillColor) => {
+   //Creates an element on the canvas (white ball)
+   ctx.fillStyle = fillColor;
+   ctx.beginPath();
+   ctx.arc(centerX,centerY,radius,0, Math.PI*2, true);
+   ctx.fill();
+   mouseText(`${centerX}, ${centerY}`, centerX, centerY, 'green');
+}
+
+let bubbleText = (font, color, textAlign, value) => {
+    ctx.font = font;
+    ctx.fillStyle = color;
+    ctx.textAlign = textAlign;
+    ctx.fillText(value, bubbleX, bubbleY);
+}
+
+const mousePosition = (event) => {
+    let rect = canvas.getBoundingClientRect();
+    let root = document.documentElement;
+
+    mouseX = event.clientX - rect.left - root.scrollLeft;
+    mouseY = event.clientY - rect.top - root.scrollTop;
 
 }
-//Random Number Generator
+
+const mouseText = (words, textX, textY, fillColor) => {
+    ctx.fillStyle = fillColor;
+    ctx.fillText(words, textX, textY);
+}
+
+
+/*RANDOM NUMBER GENERATOR*/
 const randy = (max, min) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-//Random Number Generator Tester
-const consLog = () => {
-    console.log(`I am multiplied min/max 0, 5: ${randy(5,0)}`);
-    //console.log(`I am multiplied min/max 4, 6: ${randy(6,4)}`);
-    console.log(`I am multiplied by 6, 11: ${randy(11,6)}`);
-    
-}
-
-//setInterval(consLog, 3000)
-
-//Division function
-// Multiply Min/Max
-// Divide Result by Min or Max
-// This was it avoids remainders. 
-
-
-
+/*MATH OPERATION FUNCTIONS*/
 const add = (num1, num2) => {
     return num1 + num2;
 }
-
-//TESTING add function
-// console.log(add(1, 5));
-// console.log(add(5,8));
-// console.log(add(10, 11));
-// console.log(add(9,8));
-
 
 const subtract = (num1, num2) => {
     return num2 > num1 ? num2 - num1 : num1 - num2;
 }
 
-//TESTING subtract function
-// console.log(subtract(1, 5));
-// console.log(subtract(5,8));
-// console.log(subtract(10, 11));
-// console.log(subtract(9,8));
-
-
 const multiply = (num1, num2) => {
     return num1 * num2;
 }
-
-//TESTING multiply function
-// console.log(multiply(1, 5));
-// console.log(multiply(5,8));
-// console.log(multiply(10, 11));
-// console.log(multiply(9,8));
 
 const divide = (num1, num2) => {
     let result = num1 * num2;
@@ -116,17 +117,16 @@ const divide = (num1, num2) => {
     }
 }
 
-//TESTING divide function
-// console.log(divide(12,8));
-// console.log(divisionSwitch);
-// console.log(divide(12,8));
-// console.log(divisionSwitch);
-// console.log(divide(12,8));
-// console.log(divisionSwitch);
-// console.log(divide(1,10));
-// console.log(divisionSwitch);
 
 
 
 
+//Random Number Generator Tester
+const consLog = () => {
+    console.log(`I am multiplied min/max 0, 5: ${randy(5,0)}`);
+    //console.log(`I am multiplied min/max 4, 6: ${randy(6,4)}`);
+    console.log(`I am multiplied by 6, 11: ${randy(11,6)}`);
+    
+}
 
+//setInterval(consLog, 3000)
