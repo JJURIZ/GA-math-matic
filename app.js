@@ -1,9 +1,22 @@
 'use strict'
 
 /*VARIABLES*/
-let divisionSwitch = true;
+let divisionSwitch = true,
+    canvas = document.querySelector(".game_canvas"),
+    ctx = canvas.getContext('2d');
 
+window.onload = function() {
 
+    //Sets the canvas background color and area.
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0,0, canvas.width, canvas.height);
+
+    //Creates an element on the canvas (white ball)
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
+    ctx.arc(100,100,10,0, Math.PI*2, true);
+    ctx.fill();
+}
 //Random Number Generator
 const randy = (max, min) => {
     min = Math.ceil(min);
