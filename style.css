@@ -38,6 +38,15 @@ body {
     justify-content: center;
 }
 
+.game_canvas {
+    border: 1px solid red;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 .timer {
     grid-area: timer;
     margin: 0 auto;
@@ -88,4 +97,8 @@ body {
 .score,
 .timer {
     font-size: 2rem;
+}
+
+.hidden {
+    display: none;
 }
