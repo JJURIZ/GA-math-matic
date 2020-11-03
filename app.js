@@ -11,16 +11,17 @@ let divisionSwitch = true,
     mouseX = 0,
     mouseY = 0;
 
-/*CANVAS FUNCTION*/
+/*CANVAS FUNCTIONS*/
 window.onload = function() {
-    let framesPerSecond = 30;
+    let framesPerSecond = 5;
     setInterval(updateAll, 1000/framesPerSecond);
-    canvas.addEventListener('mousemove', mousePosition)
+    canvas.addEventListener('mousemove', mousePosition);
+    canvas.addEventListener('click', onClick, false);
 }
 
 const updateAll = () => {
-    moveAll()
-    drawAll()
+    moveAll();
+    drawAll();
 }
 
 const moveAll = () => {
@@ -44,10 +45,11 @@ const moveAll = () => {
 const drawAll = () => {
    //Sets the canvas background color and area.
     gameCanvas(0,0,canvas.width, canvas.height, 'black')
-    bubble(bubbleX, bubbleY, 20, 'red')
+    bubble(bubbleX, bubbleY, 20, 'red');
+    //Places text within the cicle
     bubbleText('2rem Arial', 'white', 'center', '4');
-   //Places text within the cicle
-   mouseText(`${mouseX}, ${mouseY}`, mouseX, mouseY, 'yellow')
+    //TEMP To see coordinates of cursor. Will remove later. 
+    mouseText(`${mouseX}, ${mouseY}`, mouseX, mouseY, 'yellow')
 }
 
 const gameCanvas = (topLeftX, topLeftY, boxWidth, boxHeight, fillColor) => {
@@ -84,6 +86,27 @@ const mouseText = (words, textX, textY, fillColor) => {
     ctx.fillStyle = fillColor;
     ctx.fillText(words, textX, textY);
 }
+
+
+function onClick(event) {
+    let x = event.pageX -canvas.offsetLeft ;
+    let y = event.pageY -canvas.offsetTop;
+    let xClickValue = Math.abs(bubbleX-x)
+    let yClickValue = Math.abs(bubbleY-y);
+    let clickValue = subtract(xClickValue,yClickValue);
+    console.log(clickValue);
+    if(clickValue < 10 && xClickValue < 20 && yClickValue < 20) {
+        console.log(`It's a hit!`)
+    }
+
+    console.log(`X-click: ${x}, Bubble: ${bubbleX}. Y-click: ${y}. Bubble: ${bubbleY}. X${bubbleX - x}, Y${bubbleY - y}`)
+}
+
+
+
+
+
+/******************************************************************/
 
 
 /*RANDOM NUMBER GENERATOR*/
