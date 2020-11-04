@@ -68,13 +68,9 @@ body {
     /* border: 1px solid black; */
     height: 80vh;
     width: 75vw;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-areas: "question question question question"
-                         "question question question question"
-                         ". answer answer ."
-                         ". answer answer ."
-            ;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: "num1 operator num2 equals num3";
 
 }
 
@@ -83,16 +79,8 @@ body {
     width: 75vw;
     border: 1px solid red;
     background-color: red;
-    grid-area: question;
 }
 
-.mathround_answers {
-    height: 30vh;
-    width: 40vw;
-    background-color: blue;
-    border: 1px solid blue;
-    grid-area: answer;
-}
 
 .score,
 .timer {
