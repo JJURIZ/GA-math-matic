@@ -38,8 +38,6 @@ body {
     justify-content: center;
 }
 
-
-
 .timer {
     grid-area: timer;
     margin: 0 auto;
@@ -59,7 +57,7 @@ body {
     display: grid;
     justify-items: center;
     border: 1px solid red;
-    background-color: red;
+    background-color: rgba(231, 163, 163, 0.897);
     /* border: 1px solid black; */
     height: 40vh;
     width: 80vw;
@@ -69,7 +67,7 @@ body {
                          "num1 operator num2 equals num3";
 }
 
-#mathround_container-header {
+#mathround_container_header {
     grid-area: header;
     height: 10vh;
 }
@@ -80,12 +78,16 @@ body {
 #equals,
 #num3 {
     display: flex;
+    align-items: center;
+    justify-content: center;
     height: 15vh;
     width: 15vw;
-
+    border-radius: 10px;
+    font-size: 6rem;
 }
 
 #num1 {
+
     grid-area: num1;
     background-color: white;
 }
@@ -93,6 +95,7 @@ body {
 #operator {
     grid-area: operator;
     background-color: grey;
+    color: white;
 
 }
 
