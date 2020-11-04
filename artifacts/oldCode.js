@@ -143,3 +143,15 @@ You really need to upgrade your browser!
     margin-right: auto;
     display: block;
 } */
+
+
+
+
+
+//Random Number Generator Tester
+const consLog = () => {
+    console.log(`I am multiplied min/max 0, 5: ${randy(5,0)}`);
+    //console.log(`I am multiplied min/max 4, 6: ${randy(6,4)}`);
+    console.log(`I am multiplied by 6, 11: ${randy(11,6)}`);
+    
+}
