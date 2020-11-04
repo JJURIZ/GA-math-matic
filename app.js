@@ -3,6 +3,12 @@
 /*VARIABLES*/
 let divisionSwitch = true;
 
+const num1 = document.getElementById('num1'),
+      operator = document.getElementById('oerator'),
+      num2 = document.getElementById('num2'),
+      num3 = document.getElementById('num3');
+
+
 
 /*RANDOM NUMBER GENERATOR*/
 const randy = (max, min) => {

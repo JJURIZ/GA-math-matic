@@ -134,3 +134,12 @@ const makeBubbles = () => {
 <!-- <canvas class="game_canvas" width="800" height="600">
 You really need to upgrade your browser!
 </canvas> -->
+
+/* .game_canvas {
+    border: 1px solid red;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+} */

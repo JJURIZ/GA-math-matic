@@ -7,7 +7,7 @@
 }
 
 .container {
- width: 75vw;
+ width: 80vw;
  margin: auto;
 }
 
@@ -38,14 +38,7 @@ body {
     justify-content: center;
 }
 
-.game_canvas {
-    border: 1px solid red;
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
+
 
 .timer {
     grid-area: timer;
@@ -62,24 +55,67 @@ body {
     display: none;
 }
 
-.mathround_main {
+.mathround_container {
     display: grid;
-    grid-gap: 3rem;
-    /* border: 1px solid black; */
-    height: 80vh;
-    width: 75vw;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
-    grid-template-areas: "num1 operator num2 equals num3";
-
-}
-
-.mathround_questions {
-    height: 40vh;
-    width: 75vw;
+    justify-items: center;
     border: 1px solid red;
     background-color: red;
+    /* border: 1px solid black; */
+    height: 40vh;
+    width: 80vw;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "header header header header header"
+                         "num1 operator num2 equals num3";
 }
+
+#mathround_container-header {
+    grid-area: header;
+    height: 10vh;
+}
+
+#num1,
+#operator,
+#num2,
+#equals,
+#num3 {
+    display: flex;
+    height: 15vh;
+    width: 15vw;
+
+}
+
+#num1 {
+    grid-area: num1;
+    background-color: white;
+}
+
+#operator {
+    grid-area: operator;
+    background-color: grey;
+
+}
+
+#num2 {
+    grid-area: num2;
+    background-color: white;
+
+}
+
+#equals {
+    grid-area: equals;
+    background-color: yellow;
+    font-size: 8rem;
+}
+
+#num3 {
+    grid-area: num3;
+    background-color: orange;
+
+}
+
+
+
 
 
 .score,
