@@ -17,9 +17,10 @@ let value1,
     operatorValue,
     difficultyLevelAddSub = 10,
     difficultyLevelMultiply = 6,
+    computerAnswer,
     userAnswer,
-    roundNumber,
-    points;
+    roundNumber = 1,
+    points = 0;
 
 /*RANDOM NUMBER GENERATOR*/
 const randy = (max, min) => {
@@ -48,7 +49,7 @@ const add = () => {
     value1 = randy(1 , value3-1);
     value2 = value3 - value1;
     operatorValue = '+';
-    return value2;
+    computerAnswer = value3;
 }
 
 const subtract = () => {
@@ -56,31 +57,27 @@ const subtract = () => {
     value2 = randy(1, value3+1);
     value1 = value3 + value2;
     operatorValue = '-';
-    return value2;
+    computerAnswer = value3;
 }
 
 const multiply = () => {
     value1 = randy(0, difficultyLevelMultiply);
-    console.log(`value1 is ${value1}`)
-
-    value2 = randy(0, difficultyLevelMultiply);
-    console.log(`value2 is ${value2}`)
-
+    operatorValue = 'X';
+    value2 = randy(1, difficultyLevelMultiply);
     value3 = value1 * value2;
-    console.log(`value3 is ${value3}`)
-    return value3;
-    
+    computerAnswer = value3;
+    console.log(`computer answer from multiply function is ${computerAnswer}`);
 }
 
 const divide = () => {
     value2 = randy(1,10);
-    console.log(`value2 is ${value2}`)
+    //console.log(`value2 is ${value2}`)
     value3 = randy(1,10);
-    console.log(`value3 is ${value3}`)
+    //console.log(`value3 is ${value3}`)
     value1 = value3 * value2;
     operatorValue = '/';
-    console.log(`value1 is ${value1}`)
-    return value1;
+    //console.log(`value1 is ${value1}`)
+    computerAnswer = value3;
 }
 
 
@@ -88,7 +85,7 @@ const divide = () => {
 //setInterval(divide,1000);
 //console.log(add())
 //console.log(subtract())
-console.log(multiply())
+//console.log(multiply())
 //setInterval(multiply, 5000);
 
 //console.log(`Value3 is ${value3}. Value 2 is ${value2}. Value1 is ${value1}.`)
@@ -96,11 +93,28 @@ console.log(multiply())
 // console.log(value2)
 // console.log(value3)
 
-num1.textContent = value1;
-num2.textContent = value2;
-operator.textContent = operatorValue;
-//num3.textContent = value3;
+const checkAnswer = () => {
+    if (computerAnswer === parseInt(userAnswer)) {
+        console.log(`That's right! Multiply returned ${computerAnswer} and computer answer is typeof ${typeof computerAnswer} and userAnswer was ${userAnswer} and it was typeof ${typeof userAnswer}`)
+        points += 1;
+    } else {
+        console.log(`Nope. Multiply returned ${computerAnswer} and computer answer is typeof ${typeof computerAnswer} and userAnswer was ${userAnswer} and it was typeof ${typeof userAnswer}`)
+    }
+    generateProblem();
+}
 
+
+const generateProblem = () => {
+    multiply();
+    num1.textContent = value1;
+    operator.textContent = operatorValue;
+    num2.textContent = value2;
+    checkAnswer;
+}
+
+generateProblem()
+
+//setInterval - create a variable for number of seconds a round will last, pass that in as the argument??? time should not proceed to next question unless an answer is submitted...
 /*******************ONINPUT**********************/
 // Might use this to limit number of numbers allowed on input field
 // myInput.oninput = function () {
@@ -109,14 +123,19 @@ operator.textContent = operatorValue;
 //     }
 // }
 
+
+
+
 /*Event Listener Test*/
 num3.addEventListener('keypress', function(e) {
     if (e.key === 'Enter'){
         userAnswer = answer.value;
-        console.log(userAnswer);
         answer.value = '';
+        checkAnswer();
+        console.log(`num3 Event listener points is ${points} points`)
     }
 })
+
 
 const roundPicker = (round) => {
     if (round = 1) {
@@ -137,20 +156,55 @@ const roundPicker = (round) => {
 }
 
 const difficultyLevel = (round) => {
-    if (round = 8) {
+    if (round === 8) {
         difficultyLevelAddSub = 15;
         difficultyLevelMultiply = 9;
-    } else if (round = 13) {
+    } else if (round === 13) {
         difficultyLevelAddSub = 15;
         difficultyLevelMultiply = 11;
-    } else if (round = 20) {
+    } else if (round === 20) {
         difficultyLevelAddSub = 20;
         difficultyLevelMultiply = 15;
     }
 }
 
-const totalPoints = () => {
-    if (/*answer to problem === true*/true === true) {
-        points++;
-    }
-}
+
+/***Order of Operations****/
+
+/* 
+
+1. Generate a problem on screen.YES
+2. Accept user input/answer. YES
+3. Upon clicking "enter", evaluate for truthiness YES
+4. Increase score if correct/score no change if wrong. YES
+5. Clear value1-3 and operator fields.YES
+6. Back to step 1. YES
+
+*/
+
+/* 
+
+1. Display Round#
+2. Display a timer.
+3. Connect timer to round.
+4. When timer starts, display first problem.
+5. When timer ends, remove unanswered problem from screen.
+6. Display message (Round Over)
+
+*/
+
+/* 
+
+1. Create Start button.
+2. When clicked, will start round.
+3. Ideally there will be a 5 or 3 second countdown before starting.
+
+*/
+
+/* 
+
+1. Win Conditions need to be set
+2. If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level)
+3. Game is won/complete after X rounds (25?) or score of Y (100points?)
+
+*/
