@@ -16,8 +16,10 @@ let value1,
     value3,
     operatorValue,
     difficultyLevelAddSub = 10,
-    difficultyLevelMultiply = 25,
-    userAnswer;
+    difficultyLevelMultiply = 6,
+    userAnswer,
+    roundNumber,
+    points;
 
 /*RANDOM NUMBER GENERATOR*/
 const randy = (max, min) => {
@@ -26,43 +28,8 @@ const randy = (max, min) => {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-/*MATH OPERATION FUNCTIONS*/
-// const add = (num1, num2) => {
-//     let num3 = num1 + num2;
-//     return num3;
-// }
 
-// const subtract = (num1, num2) => {
-//     let num3;
-//     num2 > num1 ? num3 = num2 - num1 : num3 = num1 - num2;
-//     return num3;
-// }
-// console.log(subtract(randy(1,10), randy(1,10)))
-
-// const multiply = (num1, num2) => {
-//     let num3 = num1 * num2;
-//     return num3;
-// }
-
-// const divide = (num1, num2) => {
-//     let num3 = num1 * num2;
-//     if (divisionSwitch === true) {
-//         divisionSwitch = false;
-//         num3 / num1;
-//         return num2;
-//     } else {
-//         divisionSwitch = true;
-//         num3 / num2;
-//         return num1;
-//     }
-// }
-
-// console.log(divide(randy(1,10), randy(1,10)))
-
-
-
-
-//Check for prime numbers greater than 10 / less than 101 for multiplication and division problems. 
+/*PRIME NUMBER CHECK - FOR DIVISION PROBLEMS*/ 
 const isPrime = num => {
 if (num > 3) {
     for (let i = 2; i < num; i++) {
@@ -74,36 +41,8 @@ if (num > 3) {
     } 
 };
 
-const pickValue = () => {
-    let value = randy(2, difficultyLevelMultiply);
-    //console.log(`the value is ${value}`)
-    if(isPrime(value) === true) {
-        //console.log(`this is inside the isPrime true statement ${value}`)
-        pickValue()
-    } else if (isPrime(value) === undefined) {
-        //console.log(`this is inside the undefined statement ${value}`)
-        pickValue()
-    } else {
-        //console.log(`this is in the else statement ${value}`)
-        return value;
-    }
-}
 
-console.log(pickValue())
-
-
-const pickMultValue = (num) => {
-    let arr = [];
-    for(let i = 2; i < num; i++) {
-        if(num % i === 0) {
-            //console.log(i);
-            arr.push(i)
-        }
-    }
-    return arr[randy(0, arr.length)]
-}
-
-
+/*OPERATOR FUNCTIONS*/
 const add = () => {
     value3 = randy(0, difficultyLevelAddSub);
     value1 = randy(1 , value3-1);
@@ -121,11 +60,16 @@ const subtract = () => {
 }
 
 const multiply = () => {
-    value3 = pickValue();
-    value2 = pickMultValue(value3);
-    value1 = value3 / value2;
-    operatorValue = 'X';
-    return value2;
+    value1 = randy(0, difficultyLevelMultiply);
+    console.log(`value1 is ${value1}`)
+
+    value2 = randy(0, difficultyLevelMultiply);
+    console.log(`value2 is ${value2}`)
+
+    value3 = value1 * value2;
+    console.log(`value3 is ${value3}`)
+    return value3;
+    
 }
 
 const divide = () => {
@@ -138,10 +82,13 @@ const divide = () => {
     console.log(`value1 is ${value1}`)
     return value1;
 }
+
+
+/*TESTS FOR OPERATOR FUNCTIONS*/
 //setInterval(divide,1000);
 //console.log(add())
 //console.log(subtract())
-console.log(divide())
+console.log(multiply())
 //setInterval(multiply, 5000);
 
 //console.log(`Value3 is ${value3}. Value 2 is ${value2}. Value1 is ${value1}.`)
@@ -162,6 +109,7 @@ operator.textContent = operatorValue;
 //     }
 // }
 
+/*Event Listener Test*/
 num3.addEventListener('keypress', function(e) {
     if (e.key === 'Enter'){
         userAnswer = answer.value;
@@ -169,3 +117,40 @@ num3.addEventListener('keypress', function(e) {
         answer.value = '';
     }
 })
+
+const roundPicker = (round) => {
+    if (round = 1) {
+        // only supply addition problems
+    } else if (round = 2) {
+        // only supply subtraction problems
+    } else if (round = 3) {
+        // only supply multiplication problems
+    } else if (round = 4) {
+        // only division
+    } else if (round = 5) {
+        // add || subtract
+    } else if (round = 6) {
+        // multiplication || division
+    } else if (round > 6) {
+        // addition || subtraction || multiplication || division
+    }
+}
+
+const difficultyLevel = (round) => {
+    if (round = 8) {
+        difficultyLevelAddSub = 15;
+        difficultyLevelMultiply = 9;
+    } else if (round = 13) {
+        difficultyLevelAddSub = 15;
+        difficultyLevelMultiply = 11;
+    } else if (round = 20) {
+        difficultyLevelAddSub = 20;
+        difficultyLevelMultiply = 15;
+    }
+}
+
+const totalPoints = () => {
+    if (/*answer to problem === true*/true === true) {
+        points++;
+    }
+}

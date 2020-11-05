@@ -155,3 +155,66 @@ const consLog = () => {
     console.log(`I am multiplied by 6, 11: ${randy(11,6)}`);
     
 }
+
+
+/*MATH OPERATION FUNCTIONS*/
+// const add = (num1, num2) => {
+//     let num3 = num1 + num2;
+//     return num3;
+// }
+
+// const subtract = (num1, num2) => {
+//     let num3;
+//     num2 > num1 ? num3 = num2 - num1 : num3 = num1 - num2;
+//     return num3;
+// }
+// console.log(subtract(randy(1,10), randy(1,10)))
+
+// const multiply = (num1, num2) => {
+//     let num3 = num1 * num2;
+//     return num3;
+// }
+
+// const divide = (num1, num2) => {
+//     let num3 = num1 * num2;
+//     if (divisionSwitch === true) {
+//         divisionSwitch = false;
+//         num3 / num1;
+//         return num2;
+//     } else {
+//         divisionSwitch = true;
+//         num3 / num2;
+//         return num1;
+//     }
+// }
+
+// console.log(divide(randy(1,10), randy(1,10)))
+
+
+
+//Alternate multiply function starting with the answer and working backwards. Needs pickValue function also (see below)
+// const multiply = () => {
+//     value3 = pickValue();
+//     value2 = pickMultValue(value3);
+//     value1 = value3 / value2;
+//     operatorValue = 'X';
+//     return value2;
+// }
+
+/**/
+const pickValue = () => {
+    let value = randy(2, difficultyLevelMultiply);
+    //console.log(`the value is ${value}`)
+    if(isPrime(value) === true) {
+        //console.log(`this is inside the isPrime true statement ${value}`)
+        pickValue()
+    } else if (isPrime(value) === undefined) {
+        //console.log(`this is inside the undefined statement ${value}`)
+        pickValue()
+    } else {
+        //console.log(`this is in the else statement ${value}`)
+        return value;
+    }
+}
+
+console.log(pickValue())
