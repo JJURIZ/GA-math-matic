@@ -6,7 +6,8 @@ let divisionSwitch = true;
 const num1 = document.getElementById('num1'),
       operator = document.getElementById('operator'),
       num2 = document.getElementById('num2'),
-      num3 = document.getElementById('num3');
+      num3 = document.getElementById('num3'),
+      answer = document.getElementById("answer");
 
 let operations = ['+', '-', '*', '/'];
 
@@ -15,7 +16,8 @@ let value1,
     value3,
     operatorValue,
     difficultyLevelAddSub = 10,
-    difficultyLevelMultDiv = 25;
+    difficultyLevelMultiply = 25,
+    userAnswer;
 
 /*RANDOM NUMBER GENERATOR*/
 const randy = (max, min) => {
@@ -60,10 +62,6 @@ const randy = (max, min) => {
 
 
 
-
-
-
-
 //Check for prime numbers greater than 10 / less than 101 for multiplication and division problems. 
 const isPrime = num => {
 if (num > 3) {
@@ -77,16 +75,16 @@ if (num > 3) {
 };
 
 const pickValue = () => {
-    let value = randy(2, difficultyLevelMultDiv);
-    console.log(`the value is ${value}`)
+    let value = randy(2, difficultyLevelMultiply);
+    //console.log(`the value is ${value}`)
     if(isPrime(value) === true) {
-        console.log(`this is inside the isPrime true statement ${value}`)
+        //console.log(`this is inside the isPrime true statement ${value}`)
         pickValue()
     } else if (isPrime(value) === undefined) {
-        console.log(`this is inside the undefined statement ${value}`)
+        //console.log(`this is inside the undefined statement ${value}`)
         pickValue()
     } else {
-        console.log(`this is in the else statement ${value}`)
+        //console.log(`this is in the else statement ${value}`)
         return value;
     }
 }
@@ -98,7 +96,7 @@ const pickMultValue = (num) => {
     let arr = [];
     for(let i = 2; i < num; i++) {
         if(num % i === 0) {
-            console.log(i);
+            //console.log(i);
             arr.push(i)
         }
     }
@@ -130,10 +128,21 @@ const multiply = () => {
     return value2;
 }
 
-
+const divide = () => {
+    value2 = randy(1,10);
+    console.log(`value2 is ${value2}`)
+    value3 = randy(1,10);
+    console.log(`value3 is ${value3}`)
+    value1 = value3 * value2;
+    operatorValue = '/';
+    console.log(`value1 is ${value1}`)
+    return value1;
+}
+//setInterval(divide,1000);
 //console.log(add())
 //console.log(subtract())
-setInterval(multiply, 5000);
+console.log(divide())
+//setInterval(multiply, 5000);
 
 //console.log(`Value3 is ${value3}. Value 2 is ${value2}. Value1 is ${value1}.`)
 // console.log(value1)
@@ -143,4 +152,20 @@ setInterval(multiply, 5000);
 num1.textContent = value1;
 num2.textContent = value2;
 operator.textContent = operatorValue;
-num3.textContent = value3;
+//num3.textContent = value3;
+
+/*******************ONINPUT**********************/
+// Might use this to limit number of numbers allowed on input field
+// myInput.oninput = function () {
+//     if (this.value.length > 4) {
+//         this.value = this.value.slice(0,4); 
+//     }
+// }
+
+num3.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter'){
+        userAnswer = answer.value;
+        console.log(userAnswer);
+        answer.value = '';
+    }
+})

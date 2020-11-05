@@ -114,18 +114,58 @@ body {
 #num3 {
     grid-area: num3;
     background-color: orange;
-
+    position: relative;
 }
 
+#num3 i {
+    position: absolute;
+    width: 10rem;
+    height: .5rem;
+    background-color: grey;
+    left: auto;
+    top: 90%;
+    animation-name: blink;
+    animation-duration: 700ms;
+    animation-iteration-count: infinite;
+    opacity: 1;
+}
 
+#num3 input:focus + i {
+    display: none;
+}
 
+.answer {
+    text-align: center;
+    border: 1px solid red;
+    height: 14vh;
+    width: 14vw;
+    font-size: 6rem;
+    padding-right: 20px;
+}
 
+.answer:after {
+    content: '';
+    width: 20px;
+    height: 2px;
+    background: black;
+    opacity: 0;
+    display: inline-block;
+    animation: textCursor 1s linear infinite alternate;
+  }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
 .score,
 .timer {
     font-size: 2rem;
 }
 
-.hidden {
-    display: none;
+
+@keyframes blink {
+    from { opacity: .75; }
+    to { opacity: 0; }
 }
