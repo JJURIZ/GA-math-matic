@@ -8,8 +8,14 @@ const num1 = document.getElementById('num1'),
       num2 = document.getElementById('num2'),
       num3 = document.getElementById('num3'),
       answer = document.getElementById("answer"),
+
       level = document.getElementById("level_value"),
-      playerScore = document.getElementById("player_points");
+      timeRemaining = document.getElementById("time_remaining"),
+      playerScore = document.getElementById("player_points"),
+
+      startButton = document.getElementById("start_button"),
+      textCursor = document.getElementById("text_cursor");
+  
 
 let operations = ['+', '-', '*', '/'];
 
@@ -21,8 +27,20 @@ let value1,
     difficultyLevelMultiply = 6,
     computerAnswer,
     userAnswer,
-    levelNumber = 1,
-    points = 0;
+    levelNumber = 3,
+    points = 0,
+    timer = 31;
+
+/*CLICK EVENT FOR START BUTTON*/
+startButton.addEventListener("click", function(){
+    levelNumber += 1;
+    level.innerText = levelNumber;
+    console.log(levelNumber);
+    timeRemaining.classList.remove("red_time");
+    timeRemaining.classList.add("green_time");
+    startTimer();
+    generateProblem();
+});
 
 /*RANDOM NUMBER GENERATOR*/
 const randy = (max, min) => {
@@ -71,30 +89,56 @@ const multiply = () => {
 
 const divide = () => {
     value2 = randy(1,10);
-    //console.log(`value2 is ${value2}`)
     value3 = randy(1,10);
-    //console.log(`value3 is ${value3}`)
     value1 = value3 * value2;
     operatorValue = '/';
-    //console.log(`value1 is ${value1}`)
     computerAnswer = value3;
 }
+
+let operatorArray = [add, subtract, multiply, divide];
+
 
 /*DOES USER ANSWER MATCH COMPUTER ANSWER? */
 const checkAnswer = () => {
     if (computerAnswer === parseInt(userAnswer)) {
         points += 1;
     } 
-    generateProblem();
+}
+
+
+const levelPicker = () => {
+    if (levelNumber === 1) {
+        return operatorArray[0]();
+    } else if (levelNumber === 2) {
+        return operatorArray[1]();
+    } else if (levelNumber === 3) {
+        return operatorArray[2]();
+    } else if (levelNumber === 4) {
+        return operatorArray[3]();
+    } else if (levelNumber === 5) {
+        return operatorArray[randy(0,2)]();
+    } else if (levelNumber === 6) {
+        return operatorArray[randy(3,4)]();
+    } else if (levelNumber > 6) {
+        return operatorArray[randy(0,4)]();
+
+    }
 }
 
 /*GENERATE A NEW PROBLEM FOR PLAYER */
 const generateProblem = () => {
-    multiply();
+    levelPicker();
     num1.textContent = value1;
     operator.textContent = operatorValue;
     num2.textContent = value2;
     checkAnswer;
+}
+
+const clearProblem = () => {
+    num1.textContent = '';
+    operator.textContent = '';
+    num2.textContent = '';
+    textCursor.classList.add("hidden");
 }
 
 
@@ -105,31 +149,42 @@ num3.addEventListener('keypress', function(e) {
         answer.value = '';
         checkAnswer();
         playerScore.innerText = points;
+        clearProblem();
+        generateProblem();
     }
-})
+});
 
-level.innerText = levelNumber;
+const startTimer = () => {
 
+    let countdown = setInterval(function() {
+        if (timer > 0) {
+            timer -= 1;
+            timeRemaining.textContent = ` : ${timer}`;
+            textCursor.classList.remove("hidden");
+        } else if (timer === 0) {
+            timeRemaining.textContent = ` Time's Up!`;
+            clearInterval(countdown)
+            clearProblem();
+            timer = 31;
+        }
 
+        if (timer < 31 && timer >= 20) {
+            timeRemaining.classList.add("green_time");
+        }
 
+        if (timer <= 19 && timer >= 11) {
+            timeRemaining.classList.remove("green_time");
+            timeRemaining.classList.add("black_time");
+        }
 
-const levelPicker = (level) => {
-    if (level = 1) {
-        // only supply addition problems
-    } else if (level = 2) {
-        // only supply subtraction problems
-    } else if (level = 3) {
-        // only supply multiplication problems
-    } else if (level = 4) {
-        // only division
-    } else if (level = 5) {
-        // add || subtract
-    } else if (level = 6) {
-        // multiplication || division
-    } else if (level > 6) {
-        // addition || subtraction || multiplication || division
-    }
+        if (timer === 10 ){
+            timeRemaining.classList.remove("black_time");
+            timeRemaining.classList.add("red_time");
+        } 
+    }, 1000);
 }
+
+
 
 const difficultyLevel = (level) => {
     if (level === 8) {
@@ -144,7 +199,7 @@ const difficultyLevel = (level) => {
     }
 }
 
-generateProblem()
+
 difficultyLevel(levelNumber);
 
 
@@ -173,9 +228,9 @@ difficultyLevel(levelNumber);
 /* 
 
 1. Display Round# YES
-2. Display a timer.
-3. Connect timer to round.
-4. When timer starts, display first problem.
+2. Display a timer. YES
+3. Connect timer to round. 
+4. When timer starts, display first problem. YES
 5. When timer ends, remove unanswered problem from screen.
 6. Display message (Round Over)
 
@@ -195,4 +250,13 @@ difficultyLevel(levelNumber);
 2. If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level)
 3. Game is won/complete after X rounds (25?) or score of Y (100points?)
 
+*/
+
+/*  
+
+Start with a value.
+when start button clicked, run setInterval 
+while value > 0, time -= 1
+if value === 0
+clearInterval(intervalId)
 */

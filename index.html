@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,800;1,400;1,700&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>MathMatic</title>
 </head>
 <body>
     <div class="container">
@@ -20,7 +20,7 @@
             Level <span id="level_value"></span>
         </div>
         <div id="timer">
-            Timer
+            Time Remaining<span id="time_remaining"></span>
         </div>
         <div class="points">
             Points <span id="player_points">0</span>
@@ -36,11 +36,14 @@
                 <div id="equals">=</div>
                 <div id="num3">
                     <input type="number" id="answer" class="answer" min="0" max="999"/>
-                    <i></i>
+                    <i id="text_cursor"></i>
+                </div>
+
+                <div class="start_container">
+                    <button id="start_button">Start</button>
                 </div>
                 </div>
         </div>
-
 
     <script src="app.js"></script>
 </body>

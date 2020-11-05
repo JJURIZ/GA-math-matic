@@ -1,5 +1,5 @@
 * {
-    //background-color: azure;
+    /* background-color: azure; */
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -27,7 +27,6 @@ body {
 
 .header_main-title {
     font-size: 6rem;
-    padding-top: 1rem;
 }
 
 .game_state {
@@ -43,7 +42,8 @@ body {
 #timer,
 .level,
 #level_value,
-#player_points {
+#player_points,
+#time_remaining {
     font-size: 2rem;
 }
 
@@ -78,13 +78,15 @@ body {
     height: 40vh;
     width: 80vw;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 200px 1fr;
+    grid-template-rows: repeat(3, 1fr);
     grid-template-areas: "header header header header header"
-                         "num1 operator num2 equals num3";
+                         "num1 operator num2 equals num3"
+                         ". . start . ."
+                         ;
 }
 
 #mathround_container_header {
-    padding-top: 3rem;
+    padding-top: 1rem;
     grid-area: header;
     height: 10vh;
 }
@@ -133,20 +135,21 @@ body {
     position: relative;
 }
 
-#num3 i {
+#text_cursor {
     position: absolute;
     width: 10rem;
     height: .5rem;
-    background-color: green;
+    background-color: black;
     left: auto;
     top: 90%;
     animation-name: blink;
     animation-duration: 700ms;
     animation-iteration-count: infinite;
     opacity: 1;
+    display: hidden;
 }
 
-#num3 input:focus + i {
+#text_cursor:focus + i {
     display: none;
 }
 
@@ -175,6 +178,30 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+
+.start_container {
+    grid-area: start;
+    padding-top: 5rem;
+}
+
+#start_button {
+    width: 20rem;
+    height: 10rem;
+    font-size: 4rem;
+    
+}
+
+.green_time {
+    color: green;
+}
+
+.black_time {
+    color: black;
+}
+
+.red_time {
+    color: red;
 }
 
 
