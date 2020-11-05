@@ -7,7 +7,9 @@ const num1 = document.getElementById('num1'),
       operator = document.getElementById('operator'),
       num2 = document.getElementById('num2'),
       num3 = document.getElementById('num3'),
-      answer = document.getElementById("answer");
+      answer = document.getElementById("answer"),
+      level = document.getElementById("level_value"),
+      playerScore = document.getElementById("player_points");
 
 let operations = ['+', '-', '*', '/'];
 
@@ -19,7 +21,7 @@ let value1,
     difficultyLevelMultiply = 6,
     computerAnswer,
     userAnswer,
-    roundNumber = 1,
+    levelNumber = 1,
     points = 0;
 
 /*RANDOM NUMBER GENERATOR*/
@@ -41,7 +43,6 @@ if (num > 3) {
     return true;
     } 
 };
-
 
 /*OPERATOR FUNCTIONS*/
 const add = () => {
@@ -66,7 +67,6 @@ const multiply = () => {
     value2 = randy(1, difficultyLevelMultiply);
     value3 = value1 * value2;
     computerAnswer = value3;
-    console.log(`computer answer from multiply function is ${computerAnswer}`);
 }
 
 const divide = () => {
@@ -80,30 +80,15 @@ const divide = () => {
     computerAnswer = value3;
 }
 
-
-/*TESTS FOR OPERATOR FUNCTIONS*/
-//setInterval(divide,1000);
-//console.log(add())
-//console.log(subtract())
-//console.log(multiply())
-//setInterval(multiply, 5000);
-
-//console.log(`Value3 is ${value3}. Value 2 is ${value2}. Value1 is ${value1}.`)
-// console.log(value1)
-// console.log(value2)
-// console.log(value3)
-
+/*DOES USER ANSWER MATCH COMPUTER ANSWER? */
 const checkAnswer = () => {
     if (computerAnswer === parseInt(userAnswer)) {
-        console.log(`That's right! Multiply returned ${computerAnswer} and computer answer is typeof ${typeof computerAnswer} and userAnswer was ${userAnswer} and it was typeof ${typeof userAnswer}`)
         points += 1;
-    } else {
-        console.log(`Nope. Multiply returned ${computerAnswer} and computer answer is typeof ${typeof computerAnswer} and userAnswer was ${userAnswer} and it was typeof ${typeof userAnswer}`)
-    }
+    } 
     generateProblem();
 }
 
-
+/*GENERATE A NEW PROBLEM FOR PLAYER */
 const generateProblem = () => {
     multiply();
     num1.textContent = value1;
@@ -112,7 +97,56 @@ const generateProblem = () => {
     checkAnswer;
 }
 
+
+/*EVENT LISTENER - PLAYER RETURNS ANSWER*/
+num3.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter'){
+        userAnswer = answer.value;
+        answer.value = '';
+        checkAnswer();
+        playerScore.innerText = points;
+    }
+})
+
+level.innerText = levelNumber;
+
+
+
+
+const levelPicker = (level) => {
+    if (level = 1) {
+        // only supply addition problems
+    } else if (level = 2) {
+        // only supply subtraction problems
+    } else if (level = 3) {
+        // only supply multiplication problems
+    } else if (level = 4) {
+        // only division
+    } else if (level = 5) {
+        // add || subtract
+    } else if (level = 6) {
+        // multiplication || division
+    } else if (level > 6) {
+        // addition || subtraction || multiplication || division
+    }
+}
+
+const difficultyLevel = (level) => {
+    if (level === 8) {
+        difficultyLevelAddSub = 15;
+        difficultyLevelMultiply = 9;
+    } else if (level === 13) {
+        difficultyLevelAddSub = 15;
+        difficultyLevelMultiply = 11;
+    } else if (level === 20) {
+        difficultyLevelAddSub = 20;
+        difficultyLevelMultiply = 15;
+    }
+}
+
 generateProblem()
+difficultyLevel(levelNumber);
+
 
 //setInterval - create a variable for number of seconds a round will last, pass that in as the argument??? time should not proceed to next question unless an answer is submitted...
 /*******************ONINPUT**********************/
@@ -122,52 +156,6 @@ generateProblem()
 //         this.value = this.value.slice(0,4); 
 //     }
 // }
-
-
-
-
-/*Event Listener Test*/
-num3.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter'){
-        userAnswer = answer.value;
-        answer.value = '';
-        checkAnswer();
-        console.log(`num3 Event listener points is ${points} points`)
-    }
-})
-
-
-const roundPicker = (round) => {
-    if (round = 1) {
-        // only supply addition problems
-    } else if (round = 2) {
-        // only supply subtraction problems
-    } else if (round = 3) {
-        // only supply multiplication problems
-    } else if (round = 4) {
-        // only division
-    } else if (round = 5) {
-        // add || subtract
-    } else if (round = 6) {
-        // multiplication || division
-    } else if (round > 6) {
-        // addition || subtraction || multiplication || division
-    }
-}
-
-const difficultyLevel = (round) => {
-    if (round === 8) {
-        difficultyLevelAddSub = 15;
-        difficultyLevelMultiply = 9;
-    } else if (round === 13) {
-        difficultyLevelAddSub = 15;
-        difficultyLevelMultiply = 11;
-    } else if (round === 20) {
-        difficultyLevelAddSub = 20;
-        difficultyLevelMultiply = 15;
-    }
-}
-
 
 /***Order of Operations****/
 
@@ -184,7 +172,7 @@ const difficultyLevel = (round) => {
 
 /* 
 
-1. Display Round#
+1. Display Round# YES
 2. Display a timer.
 3. Connect timer to round.
 4. When timer starts, display first problem.

@@ -218,3 +218,16 @@ const pickValue = () => {
 }
 
 console.log(pickValue())
+
+
+/*TESTS FOR OPERATOR FUNCTIONS*/
+//setInterval(divide,1000);
+//console.log(add())
+//console.log(subtract())
+//console.log(multiply())
+//setInterval(multiply, 5000);
+
+//console.log(`Value3 is ${value3}. Value 2 is ${value2}. Value1 is ${value1}.`)
+// console.log(value1)
+// console.log(value2)
+// console.log(value3)

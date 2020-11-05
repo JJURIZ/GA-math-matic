@@ -1,5 +1,5 @@
 * {
-    background-color: azure;
+    //background-color: azure;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -33,19 +33,35 @@ body {
 .game_state {
     display: grid;
     border: 1px solid black;
+    border-radius: 5px;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: ". timer score";
+    grid-template-areas: "level timer points";
     justify-content: center;
 }
 
-.timer {
+.points,
+#timer,
+.level,
+#level_value,
+#player_points {
+    font-size: 2rem;
+}
+
+.level {
+    grid-area: level;
+    justify-self: start;
+    padding-left: 1rem;
+}
+
+#timer {
     grid-area: timer;
     margin: 0 auto;
 }
 
-.score {
-    grid-area: score;
+.points {
+    grid-area: points;
     justify-self: end;
+    padding-right: 1rem;
     
 }
 
@@ -56,18 +72,19 @@ body {
 .mathround_container {
     display: grid;
     justify-items: center;
-    border: 1px solid red;
-    background-color: rgba(231, 163, 163, 0.897);
+    /* border: 1px solid red;
+    background-color: rgba(231, 163, 163, 0.897); */
     /* border: 1px solid black; */
     height: 40vh;
     width: 80vw;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 200px 1fr;
     grid-template-areas: "header header header header header"
                          "num1 operator num2 equals num3";
 }
 
 #mathround_container_header {
+    padding-top: 3rem;
     grid-area: header;
     height: 10vh;
 }
@@ -107,13 +124,12 @@ body {
 
 #equals {
     grid-area: equals;
-    background-color: yellow;
+    /* background-color: yellow; */
     font-size: 8rem;
 }
 
 #num3 {
     grid-area: num3;
-    background-color: orange;
     position: relative;
 }
 
@@ -121,7 +137,7 @@ body {
     position: absolute;
     width: 10rem;
     height: .5rem;
-    background-color: grey;
+    background-color: green;
     left: auto;
     top: 90%;
     animation-name: blink;
@@ -136,11 +152,12 @@ body {
 
 .answer {
     text-align: center;
-    border: 1px solid red;
+    border: none;
     height: 14vh;
     width: 14vw;
     font-size: 6rem;
     padding-right: 20px;
+    outline: none;
 }
 
 .answer:after {
@@ -153,16 +170,13 @@ body {
     animation: textCursor 1s linear infinite alternate;
   }
 
+/* REMOVES INCREMENT/DECREMENT FROM INPUT */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
 }
 
-.score,
-.timer {
-    font-size: 2rem;
-}
 
 
 @keyframes blink {
