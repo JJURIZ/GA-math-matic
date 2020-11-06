@@ -1,7 +1,7 @@
 'use strict'
 
-/*VARIABLES*/
-let divisionSwitch = true;
+/****************VARIABLES****************/
+
 
 const num1 = document.getElementById('num1'),
       operator = document.getElementById('operator'),
@@ -24,6 +24,7 @@ let value1,
     value2,
     value3,
     operatorValue,
+    divisionSwitch = true,
     minDifficultyLevelAddSub = 0,
     maxDifficultyLevelAddSub = 10,
     minDifficultyLevelMultiply = 0,
@@ -31,10 +32,11 @@ let value1,
     computerAnswer,
     userAnswer,
     levelNumber = 20,
-    points = 99,
+    points = 0,
     timer = 31;
 
 
+/****************ARRAYS****************/
 let answerArray = [],
     questionArray = [],
     isCorrectArray = [],
@@ -52,7 +54,7 @@ const randy = (max, min) => {
 /*OPERATOR FUNCTIONS*/
 const add = () => {
     value3 = randy(minDifficultyLevelAddSub, maxDifficultyLevelAddSub);
-    value1 = randy(minDifficultyLevelAddSub , value3-1);
+    value1 = randy(minDifficultyLevelAddSub+1 , value3);
     value2 = value3 - value1;
     operatorValue = '+';
     computerAnswer = value3;
@@ -84,7 +86,6 @@ const divide = () => {
 
 let operatorArray = [add, subtract, multiply, divide];
 
-
 /*DOES USER ANSWER MATCH COMPUTER ANSWER?*/
 const checkAnswer = () => {
     if (computerAnswer === parseInt(userAnswer)) {
@@ -92,7 +93,7 @@ const checkAnswer = () => {
     } 
 }
 
-
+/*GAME OVER CONDITION CHECK*/
 const gameOver = () => {
     startButton.classList.add("hidden");
     newGameButton.classList.remove("hidden");
@@ -113,7 +114,7 @@ const levelPicker = () => {
     } else if (levelNumber === 5) {
         return operatorArray[randy(0,2)]();
     } else if (levelNumber === 6) {
-        return operatorArray[randy(3,4)]();
+        return operatorArray[randy(2,4)]();
     } else if (levelNumber > 6) {
         return operatorArray[randy(0,4)]();
 
@@ -137,7 +138,7 @@ const clearProblem = () => {
     num2.textContent = '';
 }
 
-
+/*GAME TIMER*/
 const startTimer = () => {
     let countdown = setInterval(function() {
         if (timer > 0) {
@@ -178,7 +179,7 @@ const startTimer = () => {
     }, 1000);
 }
 
-/*ADJUSTS DIFFICULTY (I.E. NUMBER VALUES INCREASE)*/
+/*ADJUSTS DIFFICULTY (I.E. AS LEVEL INCREASES, OPERAND VALUES INCREASE)*/
 const difficultyLevel = (level) => {
     if (level === 8) {
         minDifficultyLevelAddSub = 2;
@@ -212,6 +213,7 @@ startButton.addEventListener("click", function(){
     timeRemaining.classList.add("green_time");
     startTimer();
     generateProblem();
+    console.log(levelNumber)
 });
 
 /*EVENT LISTENER - PLAYER RETURNS ANSWER*/

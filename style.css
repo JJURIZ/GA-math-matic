@@ -72,9 +72,6 @@ body {
 .mathround_container {
     display: grid;
     justify-items: center;
-    /* border: 1px solid red;
-    background-color: rgba(231, 163, 163, 0.897); */
-    /* border: 1px solid black; */
     height: 40vh;
     width: 80vw;
     grid-template-columns: repeat(5, 1fr);
@@ -83,10 +80,10 @@ body {
                          "num1 operator num2 equals num3"
                          ". . start . ."
                          ;
+    gap: 3rem;
 }
 
 #mathround_container_header {
-    padding-top: 1rem;
     grid-area: header;
     height: 10vh;
 }
@@ -182,13 +179,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 .start_container {
     grid-area: start;
-    padding-top: 5rem;
 }
 
 #start_button,
 #newgame_button {
-    width: 20rem;
-    height: 10rem;
+    width: 18rem;
+    height: 9rem;
     font-size: 4rem;
     
 }
@@ -203,6 +199,101 @@ input[type=number]::-webkit-outer-spin-button {
 
 .red_time {
     color: red;
+}
+
+#instructions{
+
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 80%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+}
+
+#instructions_content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr );
+    grid-template-areas: "title"
+                         "rules"
+                         "play"
+                         "win"
+                         "footer"
+                         ;
+    gap: 3rem;
+    width: 75%;
+    height: 50rem;
+    background-color: white;
+    box-shadow: 0 2rem 4rem rgba(0,0,0 .2);
+    transform: translate(-50%, -50%);
+    border-radius: .5rem;
+}
+
+#instructions:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+#instructions_header {
+    grid-area: title;
+    background-color: black;
+    color: white;
+    padding-left: 2rem;
+}
+
+#instructions_rules h2,
+#instructions_play h2, 
+#instructions_win h2 {
+    font-size: 2rem;
+    padding-left: 1rem;
+}
+
+#instructions_rules p,
+#instructions_play p, 
+#instructions_win p {
+    font-size: 1.2rem;
+    padding: 0 2rem 0 2rem;
+}
+
+#instructions_close {
+    grid-area: title;
+}
+
+#instructions_close:link,
+#instructions_close:visited {
+    color: white;
+    position: absolute;
+    justify-self: end;
+    align-self: center;
+    padding-right: 2rem;
+    font-size: 3.5rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all .3s;
+}
+
+#instructions_close:hover {
+    color: red;
+}
+
+
+#instructions_rules {
+    grid-area: rules;
+}
+#instructions_play {
+    grid-area: play;
+}
+
+#instructions_play {
+grid-area: win
 }
 
 @keyframes blink {
