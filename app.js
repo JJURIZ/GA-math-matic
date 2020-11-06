@@ -14,7 +14,9 @@ const num1 = document.getElementById('num1'),
       playerScore = document.getElementById("player_points"),
 
       startButton = document.getElementById("start_button"),
-      textCursor = document.getElementById("text_cursor");
+      textCursor = document.getElementById("text_cursor"),
+
+      maxPoints = 101;
   
 
 let operations = ['+', '-', '*', '/'];
@@ -23,11 +25,13 @@ let value1,
     value2,
     value3,
     operatorValue,
-    difficultyLevelAddSub = 10,
-    difficultyLevelMultiply = 6,
+    minDifficultyLevelAddSub = 0,
+    maxDifficultyLevelAddSub = 10,
+    minDifficultyLevelMultiply = 0,
+    maxDifficultyLevelMultiply = 6,
     computerAnswer,
     userAnswer,
-    levelNumber = 3,
+    levelNumber = 20,
     points = 0,
     timer = 31;
 
@@ -42,32 +46,32 @@ const randy = (max, min) => {
 
 /*OPERATOR FUNCTIONS*/
 const add = () => {
-    value3 = randy(0, difficultyLevelAddSub);
-    value1 = randy(1 , value3-1);
+    value3 = randy(minDifficultyLevelAddSub, maxDifficultyLevelAddSub);
+    value1 = randy(minDifficultyLevelAddSub , value3-1);
     value2 = value3 - value1;
     operatorValue = '+';
     computerAnswer = value3;
 }
 
 const subtract = () => {
-    value3 = randy(0, difficultyLevelAddSub);
-    value2 = randy(1, value3+1);
+    value3 = randy(minDifficultyLevelAddSub, maxDifficultyLevelAddSub);
+    value2 = randy(minDifficultyLevelAddSub, value3+1);
     value1 = value3 + value2;
     operatorValue = '-';
     computerAnswer = value3;
 }
 
 const multiply = () => {
-    value1 = randy(0, difficultyLevelMultiply);
+    value1 = randy(minDifficultyLevelMultiply, maxDifficultyLevelMultiply);
     operatorValue = 'X';
-    value2 = randy(1, difficultyLevelMultiply);
+    value2 = randy(minDifficultyLevelMultiply, maxDifficultyLevelMultiply);
     value3 = value1 * value2;
     computerAnswer = value3;
 }
 
 const divide = () => {
-    value2 = randy(1,10);
-    value3 = randy(1,10);
+    value2 = randy(minDifficultyLevelMultiply,10);
+    value3 = randy(minDifficultyLevelMultiply,10);
     value1 = value3 * value2;
     operatorValue = '/';
     computerAnswer = value3;
@@ -117,7 +121,7 @@ const clearProblem = () => {
     num1.textContent = '';
     operator.textContent = '';
     num2.textContent = '';
-    textCursor.classList.add("hidden");
+ 
 }
 
 
@@ -147,28 +151,42 @@ const startTimer = () => {
             timeRemaining.classList.remove("black_time");
             timeRemaining.classList.add("red_time");
         } 
+         
+        if (timer === 0) {
+            setTimeout(function() {startButton.classList.remove("hidden")}, 5000);
+            answer.disabled = true;
+        }
     }, 1000);
 }
 
-/*ADJUSTS DIFFICULTY (I.E. NUMBER VALUES INCREASE*/
+/*ADJUSTS DIFFICULTY (I.E. NUMBER VALUES INCREASE)*/
 const difficultyLevel = (level) => {
     if (level === 8) {
-        difficultyLevelAddSub = 15;
-        difficultyLevelMultiply = 9;
+        minDifficultyLevelAddSub = 2;
+        maxDifficultyLevelAddSub = 15;
+        minDifficultyLevelMultiply = 2;
+        maxDifficultyLevelMultiply = 9;
     } else if (level === 13) {
-        difficultyLevelAddSub = 15;
-        difficultyLevelMultiply = 11;
+        minDifficultyLevelAddSub = 5;
+        maxDifficultyLevelAddSub = 15;
+        minDifficultyLevelMultiply = 4;
+        maxDifficultyLevelMultiply = 11;
     } else if (level === 20) {
-        difficultyLevelAddSub = 20;
-        difficultyLevelMultiply = 15;
+        minDifficultyLevelAddSub = 7;
+        maxDifficultyLevelAddSub = 30;
+        minDifficultyLevelMultiply = 6;
+        maxDifficultyLevelMultiply = 15;
     }
 }
 
 difficultyLevel(levelNumber);
 
+
 /****************EVENT LISTENERS****************/
 /*CLICK EVENT FOR START BUTTON*/
 startButton.addEventListener("click", function(){
+    startButton.classList.add("hidden")
+    answer.disabled = false;
     levelNumber += 1;
     level.innerText = levelNumber;
     console.log(levelNumber);
@@ -194,28 +212,30 @@ num3.addEventListener('keypress', function(e) {
 
 
 
-
+if (points === 101) {
+    // game is over
+    startButton.classList.add("hidden")
+}
 
 
 
 /* 
 Friday
---FIX: Can get a new problem by typing in the input field at the end of a round. needs to be disabled. 
 --Win Conditions must be set. 
     -Points? 
     -Rounds?
     -Points && Rounds?
---Display message (Round Over)
+--Display message (Round Over) DONE
 --Display directions
---Ideally there will be a 5 or 3 second countdown before starting.
 --If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level)
---Game is won/complete after X rounds (25?) or score of Y (100points?)
 --Create array of all questions asked and whether they were answered correctly?
 --Need a real style applied.
+--README (screen cap winning)
 */
 
 /*NICE TO HAVES*/
 /*
+--Ideally there will be a 5 or 3 second countdown before starting.
 --Allow player to choose Practice Mode in which they can select which operation 
     they want to focus on. 
 --Intro screen. Could just be HTML, could be an overlay with button (per CSS

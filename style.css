@@ -204,8 +204,6 @@ input[type=number]::-webkit-outer-spin-button {
     color: red;
 }
 
-
-
 @keyframes blink {
     from { opacity: .75; }
     to { opacity: 0; }
