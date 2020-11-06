@@ -16,7 +16,6 @@ const num1 = document.getElementById('num1'),
 
       startButton = document.getElementById("start_button"),
       newGameButton = document.getElementById("newgame_button"),
-      textCursor = document.getElementById("text_cursor"),
 
       maxPoints = 101;
 
@@ -144,7 +143,6 @@ const startTimer = () => {
         if (timer > 0) {
             timer -= 1;
             timeRemaining.textContent = ` : ${timer}`;
-            textCursor.classList.remove("hidden");
         } else if (timer === 0) {
             timeRemaining.textContent = ` Time's Up!`;
             clearInterval(countdown)
@@ -154,16 +152,20 @@ const startTimer = () => {
 
         if (timer < 31 && timer >= 20) {
             timeRemaining.classList.add("green_time");
+            answer.style.borderColor = "green";
         }
 
         if (timer <= 19 && timer >= 11) {
             timeRemaining.classList.remove("green_time");
             timeRemaining.classList.add("black_time");
+            answer.style.borderColor = "black";
         }
 
         if (timer === 10 ){
             timeRemaining.classList.remove("black_time");
             timeRemaining.classList.add("red_time");
+            answer.style.borderColor = "red";
+
         } 
          
         if (timer === 0) {
@@ -236,10 +238,7 @@ num3.addEventListener('keypress', function(e) {
 
 /* 
 Friday
---Win Conditions must be set. 
-    -Points? 
-    -Rounds?
-    -Points && Rounds?
+
 --Display message (Round Over) DONE
 --Display directions
 --If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level)

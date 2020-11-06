@@ -22,16 +22,24 @@ body {
 }
 
 .header {
+    /* font-family: 'Monofett', cursive; */
+    font-family: 'Bangers', cursive;
     text-align: center;
 }
 
 .header_main-title {
-    font-size: 6rem;
+    font-size: 12rem;
+    background: -webkit-linear-gradient( red, blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.m {
+    font-size: 15rem;
 }
 
 .game_state {
     display: grid;
-    border: 1px solid black;
     border-radius: 5px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "level timer points";
@@ -80,12 +88,26 @@ body {
                          "num1 operator num2 equals num3"
                          ". . start . ."
                          ;
-    gap: 3rem;
+    gap: 1rem;
 }
 
 #mathround_container_header {
     grid-area: header;
     height: 10vh;
+
+}
+
+.gradient_border {
+    width: 82vw;
+    padding: 1rem;
+    position: relative;
+    background: linear-gradient(to right, red, blue);
+    border-radius: 3rem;
+  }
+  
+.mathround_main {
+    background-color: white;
+    border-radius: 2.5rem;
 }
 
 #num1,
@@ -96,23 +118,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 15vh;
-    width: 15vw;
+    height: 10vh;
+    width: 10vw;
     border-radius: 10px;
     font-size: 6rem;
 }
 
 #num1 {
-
     grid-area: num1;
     background-color: white;
 }
 
 #operator {
     grid-area: operator;
-    background-color: grey;
-    color: white;
-
 }
 
 #num2 {
@@ -123,31 +141,12 @@ body {
 
 #equals {
     grid-area: equals;
-    /* background-color: yellow; */
     font-size: 8rem;
 }
 
 #num3 {
     grid-area: num3;
     position: relative;
-}
-
-#text_cursor {
-    position: absolute;
-    width: 10rem;
-    height: .5rem;
-    background-color: black;
-    left: auto;
-    top: 90%;
-    animation-name: blink;
-    animation-duration: 700ms;
-    animation-iteration-count: infinite;
-    opacity: 1;
-    display: hidden;
-}
-
-#text_cursor:focus + i {
-    display: none;
 }
 
 .answer {
@@ -158,6 +157,9 @@ body {
     font-size: 6rem;
     padding-right: 20px;
     outline: none;
+    border: 5px solid;
+    border-color: green;
+    border-radius: 3rem;
 }
 
 .answer:after {
@@ -167,7 +169,6 @@ body {
     background: black;
     opacity: 0;
     display: inline-block;
-    animation: textCursor 1s linear infinite alternate;
   }
 
 /* REMOVES INCREMENT/DECREMENT FROM INPUT */
@@ -186,7 +187,9 @@ input[type=number]::-webkit-outer-spin-button {
     width: 18rem;
     height: 9rem;
     font-size: 4rem;
-    
+    font-family: 'Bangers', cursive;
+    border: none;
+    background-color: white;
 }
 
 .green_time {
@@ -201,8 +204,11 @@ input[type=number]::-webkit-outer-spin-button {
     color: red;
 }
 
-#instructions{
 
+
+/********************************************************************/
+/* INSTRUCTION POP UP STYLE */
+#instructions{
     height: 100vh;
     width: 100%;
     position: fixed;
@@ -212,6 +218,7 @@ input[type=number]::-webkit-outer-spin-button {
     opacity: 0;
     visibility: hidden;
     transition: all .3s;
+    overflow: hidden;
 }
 
 #instructions_content {
@@ -232,9 +239,9 @@ input[type=number]::-webkit-outer-spin-button {
     width: 75%;
     height: 50rem;
     background-color: white;
-    box-shadow: 0 2rem 4rem rgba(0,0,0 .2);
     transform: translate(-50%, -50%);
     border-radius: .5rem;
+    overflow: hidden;
 }
 
 #instructions:target {
@@ -246,12 +253,30 @@ input[type=number]::-webkit-outer-spin-button {
     grid-area: title;
     background-color: black;
     color: white;
-    padding-left: 2rem;
+    padding: .5rem 0 .5rem 2.5rem;
+    font-family: 'Bangers', cursive;
+
+}
+#instructions_rules {
+    grid-area: rules;
+}
+#instructions_play {
+    grid-area: play;
+}
+
+#instructions_win {
+grid-area: win;
+}
+
+#footer {
+grid-area: footer;
+background-color: black;
 }
 
 #instructions_rules h2,
 #instructions_play h2, 
 #instructions_win h2 {
+    font-family: 'Bangers', cursive;
     font-size: 2rem;
     padding-left: 1rem;
 }
@@ -285,18 +310,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-#instructions_rules {
-    grid-area: rules;
-}
-#instructions_play {
-    grid-area: play;
-}
 
-#instructions_play {
-grid-area: win
-}
-
-@keyframes blink {
-    from { opacity: .75; }
-    to { opacity: 0; }
-}
+/* "title"
+"rules"
+"play"
+"win"
+"footer" */
