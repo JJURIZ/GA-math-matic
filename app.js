@@ -10,16 +10,15 @@ const num1 = document.getElementById('num1'),
       answer = document.getElementById("answer"),
 
       level = document.getElementById("level_value"),
+      timerLabel = document.getElementById("timer"),
       timeRemaining = document.getElementById("time_remaining"),
       playerScore = document.getElementById("player_points"),
 
       startButton = document.getElementById("start_button"),
+      newGameButton = document.getElementById("newgame_button"),
       textCursor = document.getElementById("text_cursor"),
 
       maxPoints = 101;
-  
-
-let operations = ['+', '-', '*', '/'];
 
 let value1,
     value2,
@@ -32,8 +31,14 @@ let value1,
     computerAnswer,
     userAnswer,
     levelNumber = 20,
-    points = 0,
+    points = 99,
     timer = 31;
+
+
+let answerArray = [],
+    questionArray = [],
+    isCorrectArray = [],
+    operations = ['+', '-', '*', '/'];
 
 
 /****************FUNCTIONS****************/
@@ -87,6 +92,14 @@ const checkAnswer = () => {
     } 
 }
 
+
+const gameOver = () => {
+    startButton.classList.add("hidden");
+    newGameButton.classList.remove("hidden");
+    clearProblem();
+    answer.disabled = true;
+}
+
 /*ASSIGNS OPERATIONS BASED ON CURRENT LEVEL*/
 const levelPicker = () => {
     if (levelNumber === 1) {
@@ -113,6 +126,7 @@ const generateProblem = () => {
     num1.textContent = value1;
     operator.textContent = operatorValue;
     num2.textContent = value2;
+    questionArray.push(`${value1} ${operatorValue} ${value2} = ${value3}`);
     checkAnswer;
 }
 
@@ -121,7 +135,6 @@ const clearProblem = () => {
     num1.textContent = '';
     operator.textContent = '';
     num2.textContent = '';
- 
 }
 
 
@@ -156,6 +169,12 @@ const startTimer = () => {
             setTimeout(function() {startButton.classList.remove("hidden")}, 5000);
             answer.disabled = true;
         }
+
+        if (points === 101) {
+            clearInterval(countdown);
+            timerLabel.textContent = `${timeRemaining.textContent = `Game Over!`}`;
+            gameOver();
+        }
     }, 1000);
 }
 
@@ -189,7 +208,6 @@ startButton.addEventListener("click", function(){
     answer.disabled = false;
     levelNumber += 1;
     level.innerText = levelNumber;
-    console.log(levelNumber);
     timeRemaining.classList.remove("red_time");
     timeRemaining.classList.add("green_time");
     startTimer();
@@ -202,6 +220,8 @@ startButton.addEventListener("click", function(){
 num3.addEventListener('keypress', function(e) {
     if (e.key === 'Enter'){
         userAnswer = answer.value;
+        parseInt(userAnswer) === value3? isCorrectArray.push(true) : isCorrectArray.push(false);
+        answerArray.push(userAnswer)
         answer.value = '';
         checkAnswer();
         playerScore.innerText = points;
@@ -209,13 +229,6 @@ num3.addEventListener('keypress', function(e) {
         generateProblem();
     }
 });
-
-
-
-if (points === 101) {
-    // game is over
-    startButton.classList.add("hidden")
-}
 
 
 
