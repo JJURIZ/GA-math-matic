@@ -231,3 +231,17 @@ console.log(pickValue())
 // console.log(value1)
 // console.log(value2)
 // console.log(value3)
+
+
+
+/*PRIME NUMBER CHECK - FOR DIVISION PROBLEMS*/ 
+const isPrime = num => {
+    if (num > 3) {
+        for (let i = 2; i < num; i++) {
+            if (num % i === 0) {
+                return false;
+            } 
+        }
+        return true;
+        } 
+    };

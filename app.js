@@ -31,36 +31,14 @@ let value1,
     points = 0,
     timer = 31;
 
-/*CLICK EVENT FOR START BUTTON*/
-startButton.addEventListener("click", function(){
-    levelNumber += 1;
-    level.innerText = levelNumber;
-    console.log(levelNumber);
-    timeRemaining.classList.remove("red_time");
-    timeRemaining.classList.add("green_time");
-    startTimer();
-    generateProblem();
-});
 
+/****************FUNCTIONS****************/
 /*RANDOM NUMBER GENERATOR*/
 const randy = (max, min) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
-
-
-/*PRIME NUMBER CHECK - FOR DIVISION PROBLEMS*/ 
-const isPrime = num => {
-if (num > 3) {
-    for (let i = 2; i < num; i++) {
-        if (num % i === 0) {
-            return false;
-        } 
-    }
-    return true;
-    } 
-};
 
 /*OPERATOR FUNCTIONS*/
 const add = () => {
@@ -98,14 +76,14 @@ const divide = () => {
 let operatorArray = [add, subtract, multiply, divide];
 
 
-/*DOES USER ANSWER MATCH COMPUTER ANSWER? */
+/*DOES USER ANSWER MATCH COMPUTER ANSWER?*/
 const checkAnswer = () => {
     if (computerAnswer === parseInt(userAnswer)) {
         points += 1;
     } 
 }
 
-
+/*ASSIGNS OPERATIONS BASED ON CURRENT LEVEL*/
 const levelPicker = () => {
     if (levelNumber === 1) {
         return operatorArray[0]();
@@ -134,6 +112,7 @@ const generateProblem = () => {
     checkAnswer;
 }
 
+/*CLEAR PROBLEM SO NEXT ONE CAN APPEAR*/
 const clearProblem = () => {
     num1.textContent = '';
     operator.textContent = '';
@@ -142,20 +121,7 @@ const clearProblem = () => {
 }
 
 
-/*EVENT LISTENER - PLAYER RETURNS ANSWER*/
-num3.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter'){
-        userAnswer = answer.value;
-        answer.value = '';
-        checkAnswer();
-        playerScore.innerText = points;
-        clearProblem();
-        generateProblem();
-    }
-});
-
 const startTimer = () => {
-
     let countdown = setInterval(function() {
         if (timer > 0) {
             timer -= 1;
@@ -184,8 +150,7 @@ const startTimer = () => {
     }, 1000);
 }
 
-
-
+/*ADJUSTS DIFFICULTY (I.E. NUMBER VALUES INCREASE*/
 const difficultyLevel = (level) => {
     if (level === 8) {
         difficultyLevelAddSub = 15;
@@ -199,64 +164,61 @@ const difficultyLevel = (level) => {
     }
 }
 
-
 difficultyLevel(levelNumber);
 
+/****************EVENT LISTENERS****************/
+/*CLICK EVENT FOR START BUTTON*/
+startButton.addEventListener("click", function(){
+    levelNumber += 1;
+    level.innerText = levelNumber;
+    console.log(levelNumber);
+    timeRemaining.classList.remove("red_time");
+    timeRemaining.classList.add("green_time");
+    startTimer();
+    generateProblem();
+});
 
-//setInterval - create a variable for number of seconds a round will last, pass that in as the argument??? time should not proceed to next question unless an answer is submitted...
-/*******************ONINPUT**********************/
-// Might use this to limit number of numbers allowed on input field
-// myInput.oninput = function () {
-//     if (this.value.length > 4) {
-//         this.value = this.value.slice(0,4); 
-//     }
-// }
+/*EVENT LISTENER - PLAYER RETURNS ANSWER*/
 
-/***Order of Operations****/
+//NOTE: NEED TO DISABLE SO A NEW PROBLEM CANNOT BE GENERATED UNTIL START IS PRESSED
+num3.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter'){
+        userAnswer = answer.value;
+        answer.value = '';
+        checkAnswer();
+        playerScore.innerText = points;
+        clearProblem();
+        generateProblem();
+    }
+});
 
-/* 
 
-1. Generate a problem on screen.YES
-2. Accept user input/answer. YES
-3. Upon clicking "enter", evaluate for truthiness YES
-4. Increase score if correct/score no change if wrong. YES
-5. Clear value1-3 and operator fields.YES
-6. Back to step 1. YES
 
-*/
 
-/* 
 
-1. Display Round# YES
-2. Display a timer. YES
-3. Connect timer to round. 
-4. When timer starts, display first problem. YES
-5. When timer ends, remove unanswered problem from screen.
-6. Display message (Round Over)
 
-*/
 
 /* 
-
-1. Create Start button.
-2. When clicked, will start round.
-3. Ideally there will be a 5 or 3 second countdown before starting.
-
+Friday
+--FIX: Can get a new problem by typing in the input field at the end of a round. needs to be disabled. 
+--Win Conditions must be set. 
+    -Points? 
+    -Rounds?
+    -Points && Rounds?
+--Display message (Round Over)
+--Display directions
+--Ideally there will be a 5 or 3 second countdown before starting.
+--If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level)
+--Game is won/complete after X rounds (25?) or score of Y (100points?)
+--Create array of all questions asked and whether they were answered correctly?
+--Need a real style applied.
 */
 
-/* 
+/*NICE TO HAVES*/
+/*
+--Allow player to choose Practice Mode in which they can select which operation 
+    they want to focus on. 
+--Intro screen. Could just be HTML, could be an overlay with button (per CSS
+    Jonas course)
 
-1. Win Conditions need to be set
-2. If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level)
-3. Game is won/complete after X rounds (25?) or score of Y (100points?)
-
-*/
-
-/*  
-
-Start with a value.
-when start button clicked, run setInterval 
-while value > 0, time -= 1
-if value === 0
-clearInterval(intervalId)
 */
