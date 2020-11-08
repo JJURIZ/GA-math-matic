@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,800;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Monofett&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <title>MathMatic</title>
 </head>
@@ -13,7 +12,10 @@
     <div class="container">
     <div class="header">
         <header class="header_main">
-            <h1 class="header_main-title"><span class="m">M</span>ath<span class="m">M</span>atic</h1>
+            <h1 class="header_main_title"><span class="m">M</span>ath<span class="m">M</span>atic</h1>
+            <h1 id="instructions_link">
+                <a href="#instructions" class="popup">Instructions</a>
+            </h1>
         </header>
     </div>
 
@@ -25,14 +27,13 @@
             Time Remaining<span id="time_remaining"></span>
         </div>
         <div class="points">
-            Points <span id="player_points">0</span>
+            <span id="player_points">0</span> / 101 Points 
         </div>
     </div>
 
     <div class="gradient_border">
         <div class="mathround_main">
-            <div class="mathround_container">
-                <h1 id="mathround_container_header"><a href="#instructions" class="popup">Instructions</a></h1>
+            <div class="mathround_container" id="mathround_container">
                 <div id="num1"></div>
                 <div id="operator"></div>
                 <div id="num2"></div>
@@ -41,13 +42,17 @@
                     <input type="number" id="answer" class="answer" min="0" max="999"/>
                 </div>
 
-                <div class="start_container">
-                    <button id="start_button">Start</button>
-                    <button id="newgame_button" class="hidden">New Game</button>
-                </div>
-                </div>
+                <div id="round_countdown" class="hidden"></div>
+
+            </div>
         </div>
     </div>
+    <div class="start_container">
+        <button id="start_button">Start</button>
+        <button id="newgame_button" class="hidden">New Game</button>
+    </div>
+
+
 
     <div id="instructions">
         <div id="instructions_content">

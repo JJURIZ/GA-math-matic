@@ -6,8 +6,11 @@
 const num1 = document.getElementById('num1'),
       operator = document.getElementById('operator'),
       num2 = document.getElementById('num2'),
+      equals = document.getElementById("equals"),
       num3 = document.getElementById('num3'),
       answer = document.getElementById("answer"),
+      roundCountdownDiv = document.getElementById("round_countdown"),
+      mathroundContainer =  document.getElementById("mathround_container"),
 
       level = document.getElementById("level_value"),
       timerLabel = document.getElementById("timer"),
@@ -30,9 +33,10 @@ let value1,
     maxDifficultyLevelMultiply = 6,
     computerAnswer,
     userAnswer,
-    levelNumber = 20,
+    levelNumber = 0,
     points = 0,
-    timer = 31;
+    timer = 31,
+    roundCountdown = 3;
 
 
 /****************ARRAYS****************/
@@ -171,6 +175,7 @@ const startTimer = () => {
         if (timer === 0) {
             setTimeout(function() {startButton.classList.remove("hidden")}, 5000);
             answer.disabled = true;
+            answer.innerText = '';
         }
 
         if (points === 101) {
@@ -203,19 +208,58 @@ const difficultyLevel = (level) => {
 
 difficultyLevel(levelNumber);
 
+const hideProblems = () => {
+    num1.classList.add("hidden");
+    operator.classList.add("hidden");
+    num2.classList.add("hidden");
+    equals.classList.add("hidden");
+    num3.classList.add("hidden");
+    answer.classList.add("hidden");
+}
 
+const showProblems = () => {
+    num1.classList.remove("hidden");
+    operator.classList.remove("hidden");
+    num2.classList.remove("hidden");
+    equals.classList.remove("hidden");
+    num3.classList.remove("hidden");
+    answer.classList.remove("hidden");
+}
+
+/*ROUND START FUNCTION*/
+let roundStartTimer = function() {
+    let roundTimer = setInterval(function() {
+        roundCountdownDiv.innerText = roundCountdown;
+        roundCountdown -=1;
+    if (roundCountdown === 0) {
+        roundCountdownDiv.innerText = `GO!`;
+    }
+
+    if (roundCountdown === -1) {
+        clearInterval(roundTimer);
+        roundCountdownDiv.classList.add("hidden");
+        showProblems();
+        roundCountdown = 3;
+        answer.disabled = false;
+        levelNumber += 1;
+        level.innerText = levelNumber;
+        timeRemaining.classList.remove("red_time");
+        timeRemaining.classList.add("green_time");
+        startTimer();
+        generateProblem();
+        console.log(levelNumber)
+    }
+}, 1000)
+};
 /****************EVENT LISTENERS****************/
 /*CLICK EVENT FOR START BUTTON*/
 startButton.addEventListener("click", function(){
-    startButton.classList.add("hidden")
-    answer.disabled = false;
-    levelNumber += 1;
-    level.innerText = levelNumber;
-    timeRemaining.classList.remove("red_time");
-    timeRemaining.classList.add("green_time");
-    startTimer();
-    generateProblem();
-    console.log(levelNumber)
+    if (roundCountdown === 3) {
+        startButton.classList.add("hidden");
+        roundCountdownDiv.classList.remove("hidden");
+        hideProblems();
+        roundStartTimer();
+    }
 });
 
 /*EVENT LISTENER - PLAYER RETURNS ANSWER*/
@@ -240,11 +284,11 @@ num3.addEventListener('keypress', function(e) {
 Friday
 
 --Display message (Round Over) DONE
---Display directions
---If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level)
---Create array of all questions asked and whether they were answered correctly?
---Need a real style applied.
---README (screen cap winning)
+--Display directions- DISPLAY THERE, NEED DIRECTIONS
+--If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level) NOT DONE
+--Create array of all questions asked and whether they were answered correctly?- ARRAYS CREATED, NO DISPLAY
+--Need a real style applied. STILL WORKING ON IT
+--README (screen cap winning) NEED TO FINISH THIS WEEKEND
 */
 
 /*NICE TO HAVES*/

@@ -6,9 +6,13 @@
     font-size: 62.5%; /*10px / 16px (browser default) -> 1rem = 10px */
 }
 
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
 .container {
- width: 80vw;
- margin: auto;
+    width: 80vw;
+    margin: auto;
 }
 
 
@@ -17,25 +21,45 @@ h1 {
     font-size: 3rem;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-}
-
 .header {
-    /* font-family: 'Monofett', cursive; */
     font-family: 'Bangers', cursive;
     text-align: center;
+
 }
 
-.header_main-title {
+.header_main {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: ". title title title instructions";
+    justify-items: center;
+    align-items: center;
+    text-overflow: ellipsis;
+}
+
+.header_main_title {
+    grid-area: title;
     font-size: 12rem;
     background: -webkit-linear-gradient( red, blue);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
 }
 
 .m {
     font-size: 15rem;
+    max-width: 100%;
+}
+
+#instructions_link {
+    grid-area: instructions;
+    font-family: 'Bangers', cursive;
+    justify-content: right;
+}
+
+.popup {
+    text-decoration: none;
+    text-align: center;
 }
 
 .game_state {
@@ -53,12 +77,14 @@ body {
 #player_points,
 #time_remaining {
     font-size: 2rem;
+    font-family: 'Bangers', cursive;
 }
 
 .level {
     grid-area: level;
     justify-self: start;
-    padding-left: 1rem;
+    padding-left: 2.5rem;
+
 }
 
 #timer {
@@ -73,9 +99,7 @@ body {
     
 }
 
-.hidden {
-    display: none;
-}
+
 
 .mathround_container {
     display: grid;
@@ -83,18 +107,9 @@ body {
     height: 40vh;
     width: 80vw;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-areas: "header header header header header"
-                         "num1 operator num2 equals num3"
-                         ". . start . ."
-                         ;
+    grid-template-rows: 1fr;
+    grid-template-areas: "num1 operator num2 equals num3";                     
     gap: 1rem;
-}
-
-#mathround_container_header {
-    grid-area: header;
-    height: 10vh;
-
 }
 
 .gradient_border {
@@ -114,19 +129,17 @@ body {
 #operator,
 #num2,
 #equals,
-#num3 {
+#num3,
+#round_countdown {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 10vh;
-    width: 10vw;
     border-radius: 10px;
     font-size: 6rem;
 }
 
 #num1 {
     grid-area: num1;
-    background-color: white;
 }
 
 #operator {
@@ -135,8 +148,6 @@ body {
 
 #num2 {
     grid-area: num2;
-    background-color: white;
-
 }
 
 #equals {
@@ -171,6 +182,10 @@ body {
     display: inline-block;
   }
 
+  #round_countdown {
+    grid-area: num2;
+}
+
 /* REMOVES INCREMENT/DECREMENT FROM INPUT */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -179,14 +194,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .start_container {
-    grid-area: start;
+    display: flex;
+    justify-content: center;
 }
 
 #start_button,
 #newgame_button {
-    width: 18rem;
-    height: 9rem;
-    font-size: 4rem;
+    font-size: 5rem;
     font-family: 'Bangers', cursive;
     border: none;
     background-color: white;
@@ -205,9 +219,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-
 /********************************************************************/
 /* INSTRUCTION POP UP STYLE */
+
 #instructions{
     height: 100vh;
     width: 100%;
@@ -309,7 +323,9 @@ background-color: black;
     color: red;
 }
 
-
+.hidden {
+    display: none;
+}
 
 /* "title"
 "rules"
