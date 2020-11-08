@@ -215,6 +215,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .round_countdown {
     grid-area: num2;
+    width: 60vw;
     display: flex;
     align-items: center;
     justify-content: center;

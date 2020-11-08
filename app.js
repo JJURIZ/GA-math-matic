@@ -2,13 +2,13 @@
 
 /****************VARIABLES****************/
 
-
 const num1 = document.getElementById('num1'),
       operator = document.getElementById('operator'),
       num2 = document.getElementById('num2'),
       equals = document.getElementById("equals"),
       num3 = document.getElementById('num3'),
       answer = document.getElementById("answer"),
+
       roundCountdownDiv = document.querySelector(".round_countdown"),
       mathroundContainer =  document.getElementById("mathround_container"),
 
@@ -26,20 +26,22 @@ let value1,
     value2,
     value3,
     operatorValue,
-    divisionSwitch = true,
+
     minDifficultyLevelAddSub = 0,
     maxDifficultyLevelAddSub = 10,
     minDifficultyLevelMultiply = 0,
     maxDifficultyLevelMultiply = 6,
+
     computerAnswer,
     userAnswer,
     levelNumber = 0,
-    points = 99,
+    points = 0,
     timer = 31,
     roundCountdown = 3;
 
 
 /****************ARRAYS****************/
+
 let answerArray = [],
     questionArray = [],
     isCorrectArray = [],
@@ -47,6 +49,7 @@ let answerArray = [],
 
 
 /****************FUNCTIONS****************/
+
 /*RANDOM NUMBER GENERATOR*/
 const randy = (max, min) => {
     min = Math.ceil(min);
@@ -54,7 +57,7 @@ const randy = (max, min) => {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-/*OPERATOR FUNCTIONS*/
+/*OPERATOR FUNCTIONS (ADD, SUBTRACT, MULTIPLY, DIVIDE)*/
 const add = () => {
     value3 = randy(minDifficultyLevelAddSub, maxDifficultyLevelAddSub);
     value1 = randy(minDifficultyLevelAddSub+1 , value3);
@@ -87,7 +90,7 @@ const divide = () => {
     computerAnswer = value3;
 }
 
-let operatorArray = [add, subtract, multiply, divide];
+let operatorArray = [add, subtract, multiply, divide]; // Adds each function to an array in order to allow specific or random operators in a round //
 
 /*DOES USER ANSWER MATCH COMPUTER ANSWER?*/
 const checkAnswer = () => {
@@ -135,12 +138,30 @@ const generateProblem = () => {
     checkAnswer;
 }
 
-/*CLEAR PROBLEM SO NEXT ONE CAN APPEAR*/
+/*CLEAR PROBLEM TEXT CONTENT*/
 const clearProblem = () => {
     num1.textContent = '';
     operator.textContent = '';
     num2.textContent = '';
     equals.textContent = '';
+}
+
+/*HIDE MATHROUND CONTAINER*/
+const hideProblemContainers = () => {
+    num1.classList.add("hidden");
+    operator.classList.add("hidden");
+    num2.classList.add("hidden");
+    num3.classList.add("hidden");
+    answer.classList.add("hidden");
+}
+
+/*SHOW MATHROUND CONTAINER*/
+const showProblemContainers = () => {
+    num1.classList.remove("hidden");
+    operator.classList.remove("hidden");
+    num2.classList.remove("hidden");
+    num3.classList.remove("hidden");
+    answer.classList.remove("hidden");
 }
 
 /*GAME TIMER*/
@@ -153,6 +174,13 @@ const startTimer = () => {
             timeRemaining.textContent = ` Time's Up!`;
             clearInterval(countdown)
             clearProblem();
+            hideProblemContainers();
+            setTimeout(function() {
+                startButton.classList.remove("hidden");
+                timeRemaining.textContent = ``;
+            }, 3000);
+            answer.disabled = true;
+            answer.innerText = '';
             timer = 31;
         }
 
@@ -171,18 +199,13 @@ const startTimer = () => {
             timeRemaining.classList.remove("black_time");
             timeRemaining.classList.add("red_time");
             answer.style.borderColor = "red";
-
         } 
-         
-        if (timer === 0) {
-            setTimeout(function() {startButton.classList.remove("hidden")}, 5000);
-            answer.disabled = true;
-            answer.innerText = '';
-        }
 
         if (points === 101) {
             clearInterval(countdown);
-            // timerLabel.textContent = `Game Over!`;
+            roundCountdownDiv.classList.remove("hidden");
+            hideProblemContainers();
+            roundCountdownDiv.innerText = "Game Over. You Win!"
             gameOver();
         }
     }, 1000);
@@ -210,30 +233,13 @@ const difficultyLevel = (level) => {
 
 difficultyLevel(levelNumber);
 
-/*SHOW OR HIDE PROBLEMS*/
-const hideProblems = () => {
-    num1.classList.add("hidden");
-    operator.classList.add("hidden");
-    num2.classList.add("hidden");
-    //equals.textContent = `=`;
-    num3.classList.add("hidden");
-    answer.classList.add("hidden");
-}
 
-const showProblems = () => {
-    num1.classList.remove("hidden");
-    operator.classList.remove("hidden");
-    num2.classList.remove("hidden");
-    //equals.textContent = ``;
-    num3.classList.remove("hidden");
-    answer.classList.remove("hidden");
-}
-
-/*ROUND START FUNCTION*/
+/*START ROUND*/
 let roundStartTimer = function() {
     let roundTimer = setInterval(function() {
         roundCountdownDiv.innerText = roundCountdown;
         roundCountdown -=1;
+
     if (roundCountdown === -1) {
         roundCountdownDiv.innerText = `GO!`;
     }
@@ -241,11 +247,8 @@ let roundStartTimer = function() {
     if (roundCountdown === -2) {
         clearInterval(roundTimer);
         roundCountdownDiv.innerText = ``;
-        console.log(roundCountdown);
-
         roundCountdownDiv.classList.add("hidden");
-        showProblems();
-        console.log(roundCountdown);
+        showProblemContainers();
         answer.disabled = false;
         levelNumber += 1;
         level.innerText = levelNumber;
@@ -253,14 +256,14 @@ let roundStartTimer = function() {
         timeRemaining.classList.add("green_time");
         startTimer();
         generateProblem();
-        console.log(levelNumber)
     }
 }, 1000)
 };
+
 /****************EVENT LISTENERS****************/
+
 /*START A NEW ROUND*/
 startButton.addEventListener("click", function(){
-    timeRemaining.textContent = ``;
     roundCountdown = 3;
     answer.style.borderColor = "green";
     timer = 31; // COULD CREATE A CONSTANT IF I WANT A CONSISTENT RESET
@@ -268,7 +271,7 @@ startButton.addEventListener("click", function(){
     if (roundCountdown === 3) {
         startButton.classList.add("hidden");
         roundCountdownDiv.classList.remove("hidden");
-        hideProblems();
+        hideProblemContainers();
         roundStartTimer();
     }
 });
@@ -291,6 +294,8 @@ num3.addEventListener('keypress', function(e) {
 newGameButton.addEventListener("click", function(){
     newGameButton.classList.add("hidden");
     startButton.classList.remove("hidden");
+    timeRemaining.textContent = ``;
+    roundCountdownDiv.innerText = "";
     levelNumber = 0;
     points = 0;
     playerScore.innerText = points;
@@ -298,22 +303,15 @@ newGameButton.addEventListener("click", function(){
 });
 
 /* 
-Friday
-
---Display message (Round Over) DONE
---Display directions- DISPLAY THERE, NEED DIRECTIONS
---If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level) NOT DONE
 --Create array of all questions asked and whether they were answered correctly?- ARRAYS CREATED, NO DISPLAY
---Need a real style applied. STILL WORKING ON IT
 --README (screen cap winning) NEED TO FINISH THIS WEEKEND
 */
 
 /*NICE TO HAVES*/
 /*
---Ideally there will be a 5 or 3 second countdown before starting.
+--If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level) NOT DONE
 --Allow player to choose Practice Mode in which they can select which operation 
     they want to focus on. 
 --Intro screen. Could just be HTML, could be an overlay with button (per CSS
     Jonas course)
-
 */

@@ -155,7 +155,7 @@ const consLog = () => {
     console.log(`I am multiplied by 6, 11: ${randy(11,6)}`);
     
 }
-
+divisionSwitch = true,
 
 /*MATH OPERATION FUNCTIONS*/
 // const add = (num1, num2) => {
