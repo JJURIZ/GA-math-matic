@@ -182,7 +182,7 @@ const startTimer = () => {
 
         if (points === 101) {
             clearInterval(countdown);
-            timerLabel.textContent = `${timeRemaining.textContent = `Game Over!`}`;
+            // timerLabel.textContent = `Game Over!`;
             gameOver();
         }
     }, 1000);
@@ -260,16 +260,16 @@ let roundStartTimer = function() {
 /****************EVENT LISTENERS****************/
 /*START A NEW ROUND*/
 startButton.addEventListener("click", function(){
+    timeRemaining.textContent = ``;
     roundCountdown = 3;
     answer.style.borderColor = "green";
+    timer = 31; // COULD CREATE A CONSTANT IF I WANT A CONSISTENT RESET
+
     if (roundCountdown === 3) {
         startButton.classList.add("hidden");
         roundCountdownDiv.classList.remove("hidden");
         hideProblems();
         roundStartTimer();
-    }
-    if (timeRemaining.innerText === ` Time's Up!`) {
-        timeRemaining.innerText = '';
     }
 });
 
@@ -277,7 +277,7 @@ startButton.addEventListener("click", function(){
 num3.addEventListener('keypress', function(e) {
     if (e.key === 'Enter'){
         userAnswer = answer.value;
-        parseInt(userAnswer) === value3? isCorrectArray.push(true) : isCorrectArray.push(false);
+        parseInt(userAnswer) === value3 ? isCorrectArray.push(true) : isCorrectArray.push(false);
         answerArray.push(userAnswer)
         answer.value = '';
         checkAnswer();

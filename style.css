@@ -268,14 +268,19 @@ input[type=number]::-webkit-outer-spin-button {
     visibility: visible;
 }
 
-#instructions_header {
+.instructions_header {
     grid-area: title;
     background-color: black;
     color: white;
     padding: .5rem 0 .5rem 2.5rem;
     font-family: 'Bangers', cursive;
-
+    position: relative;
 }
+#instructions_header_heading {
+    position: absolute;
+    top: 25%;
+}
+
 #instructions_rules {
     grid-area: rules;
 }
@@ -303,7 +308,7 @@ background-color: black;
 #instructions_rules p,
 #instructions_play p, 
 #instructions_win p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     padding: 0 2rem 0 2rem;
 }
 
@@ -331,9 +336,3 @@ background-color: black;
 .hidden {
     display: none;
 }
-
-/* "title"
-"rules"
-"play"
-"win"
-"footer" */
