@@ -1,5 +1,4 @@
 * {
-    /* background-color: azure; */
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -15,7 +14,6 @@ body {
     margin: auto;
 }
 
-
 h1 {
     font-weight: 400;
     font-size: 3rem;
@@ -24,17 +22,16 @@ h1 {
 .header {
     font-family: 'Bangers', cursive;
     text-align: center;
-
 }
 
 .header_main {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
     grid-template-areas: ". title title title instructions";
     justify-items: center;
     align-items: center;
     text-overflow: ellipsis;
+    color: transparent
 }
 
 .header_main_title {
@@ -42,13 +39,12 @@ h1 {
     font-size: 12rem;
     background: -webkit-linear-gradient( red, blue);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
+    animation-name: moveInTop;
+    animation-duration: 5s; 
 }
 
 .m {
-    font-size: 15rem;
-    max-width: 100%;
+    font-size: 15rem; /* FOR LETTER M IN TITLE h1 ELEMENT */
 }
 
 #instructions_link {
@@ -80,11 +76,10 @@ h1 {
     font-family: 'Bangers', cursive;
 }
 
-.level {
-    grid-area: level;
-    justify-self: start;
-    padding-left: 2.5rem;
-
+.points {
+    grid-area: points;
+    justify-self: end;
+    padding-right: 1rem;
 }
 
 #timer {
@@ -92,14 +87,11 @@ h1 {
     margin: 0 auto;
 }
 
-.points {
-    grid-area: points;
-    justify-self: end;
-    padding-right: 1rem;
-    
+.level {
+    grid-area: level;
+    justify-self: start;
+    padding-left: 2.5rem;
 }
-
-
 
 .mathround_container {
     display: grid;
@@ -184,8 +176,8 @@ h1 {
 /* REMOVES INCREMENT/DECREMENT FROM INPUT */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+    -webkit-appearance: none; 
+    margin: 0; 
 }
 
 .start_container {
@@ -199,6 +191,8 @@ input[type=number]::-webkit-outer-spin-button {
     font-family: 'Bangers', cursive;
     border: none;
     background-color: white;
+    animation-name: moveInBottom;
+    animation-duration: 5s; 
 }
 
 .green_time {
@@ -337,3 +331,22 @@ background-color: black;
 .hidden {
     display: none;
 }
+
+/********************************************************************/
+
+/* KEYFRAMES FOR ANIMATION */
+@keyframes moveInBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(10rem); }
+    100% {
+      opacity: 1;
+      transform: translate(0rem); } }
+
+@keyframes moveInTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-10rem); }
+    100% {
+        opacity: 1;
+        transform: translate(0); } }

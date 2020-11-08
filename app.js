@@ -123,7 +123,6 @@ const levelPicker = () => {
         return operatorArray[randy(2,4)]();
     } else if (levelNumber > 6) {
         return operatorArray[randy(0,4)]();
-
     }
 }
 
@@ -235,7 +234,7 @@ difficultyLevel(levelNumber);
 
 
 /*START ROUND*/
-let roundStartTimer = function() {
+let startRoundTimer = function() {
     let roundTimer = setInterval(function() {
         roundCountdownDiv.innerText = roundCountdown;
         roundCountdown -=1;
@@ -272,7 +271,7 @@ startButton.addEventListener("click", function(){
         startButton.classList.add("hidden");
         roundCountdownDiv.classList.remove("hidden");
         hideProblemContainers();
-        roundStartTimer();
+        startRoundTimer();
     }
 });
 
