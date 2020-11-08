@@ -29,8 +29,8 @@ let value1,
 
     minDifficultyLevelAddSub = 0,
     maxDifficultyLevelAddSub = 10,
-    minDifficultyLevelMultiply = 0,
-    maxDifficultyLevelMultiply = 6,
+    minDifficultyMultiplyDivide = 0,
+    maxDifficultyMultiplyDivide = 6,
 
     computerAnswer,
     userAnswer,
@@ -75,16 +75,16 @@ const subtract = () => {
 }
 
 const multiply = () => {
-    value1 = randy(minDifficultyLevelMultiply, maxDifficultyLevelMultiply);
+    value1 = randy(minDifficultyMultiplyDivide, maxDifficultyMultiplyDivide);
     operatorValue = 'X';
-    value2 = randy(minDifficultyLevelMultiply, maxDifficultyLevelMultiply);
+    value2 = randy(minDifficultyMultiplyDivide, maxDifficultyMultiplyDivide);
     value3 = value1 * value2;
     computerAnswer = value3;
 }
 
 const divide = () => {
-    value2 = randy(minDifficultyLevelMultiply,10);
-    value3 = randy(minDifficultyLevelMultiply,10);
+    value2 = randy(minDifficultyMultiplyDivide,10);
+    value3 = randy(minDifficultyMultiplyDivide,10);
     value1 = value3 * value2;
     operatorValue = '/';
     computerAnswer = value3;
@@ -215,18 +215,18 @@ const difficultyLevel = (level) => {
     if (level === 8) {
         minDifficultyLevelAddSub = 2;
         maxDifficultyLevelAddSub = 15;
-        minDifficultyLevelMultiply = 2;
-        maxDifficultyLevelMultiply = 9;
+        minDifficultyMultiplyDivide = 2;
+        maxDifficultyMultiplyDivide = 9;
     } else if (level === 13) {
         minDifficultyLevelAddSub = 5;
         maxDifficultyLevelAddSub = 15;
-        minDifficultyLevelMultiply = 4;
-        maxDifficultyLevelMultiply = 11;
+        minDifficultyMultiplyDivide = 4;
+        maxDifficultyMultiplyDivide = 11;
     } else if (level === 20) {
         minDifficultyLevelAddSub = 7;
         maxDifficultyLevelAddSub = 30;
-        minDifficultyLevelMultiply = 6;
-        maxDifficultyLevelMultiply = 15;
+        minDifficultyMultiplyDivide = 6;
+        maxDifficultyMultiplyDivide = 15;
     }
 }
 
