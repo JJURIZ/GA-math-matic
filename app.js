@@ -9,7 +9,7 @@ const num1 = document.getElementById('num1'),
       equals = document.getElementById("equals"),
       num3 = document.getElementById('num3'),
       answer = document.getElementById("answer"),
-      roundCountdownDiv = document.getElementById("round_countdown"),
+      roundCountdownDiv = document.querySelector(".round_countdown"),
       mathroundContainer =  document.getElementById("mathround_container"),
 
       level = document.getElementById("level_value"),
@@ -34,7 +34,7 @@ let value1,
     computerAnswer,
     userAnswer,
     levelNumber = 0,
-    points = 0,
+    points = 99,
     timer = 31,
     roundCountdown = 3;
 
@@ -130,6 +130,7 @@ const generateProblem = () => {
     num1.textContent = value1;
     operator.textContent = operatorValue;
     num2.textContent = value2;
+    equals.textContent = `=`;
     questionArray.push(`${value1} ${operatorValue} ${value2} = ${value3}`);
     checkAnswer;
 }
@@ -139,6 +140,7 @@ const clearProblem = () => {
     num1.textContent = '';
     operator.textContent = '';
     num2.textContent = '';
+    equals.textContent = '';
 }
 
 /*GAME TIMER*/
@@ -208,11 +210,12 @@ const difficultyLevel = (level) => {
 
 difficultyLevel(levelNumber);
 
+/*SHOW OR HIDE PROBLEMS*/
 const hideProblems = () => {
     num1.classList.add("hidden");
     operator.classList.add("hidden");
     num2.classList.add("hidden");
-    equals.classList.add("hidden");
+    //equals.textContent = `=`;
     num3.classList.add("hidden");
     answer.classList.add("hidden");
 }
@@ -221,7 +224,7 @@ const showProblems = () => {
     num1.classList.remove("hidden");
     operator.classList.remove("hidden");
     num2.classList.remove("hidden");
-    equals.classList.remove("hidden");
+    //equals.textContent = ``;
     num3.classList.remove("hidden");
     answer.classList.remove("hidden");
 }
@@ -231,15 +234,18 @@ let roundStartTimer = function() {
     let roundTimer = setInterval(function() {
         roundCountdownDiv.innerText = roundCountdown;
         roundCountdown -=1;
-    if (roundCountdown === 0) {
+    if (roundCountdown === -1) {
         roundCountdownDiv.innerText = `GO!`;
     }
 
-    if (roundCountdown === -1) {
+    if (roundCountdown === -2) {
         clearInterval(roundTimer);
+        roundCountdownDiv.innerText = ``;
+        console.log(roundCountdown);
+
         roundCountdownDiv.classList.add("hidden");
         showProblems();
-        roundCountdown = 3;
+        console.log(roundCountdown);
         answer.disabled = false;
         levelNumber += 1;
         level.innerText = levelNumber;
@@ -252,19 +258,22 @@ let roundStartTimer = function() {
 }, 1000)
 };
 /****************EVENT LISTENERS****************/
-/*CLICK EVENT FOR START BUTTON*/
+/*START A NEW ROUND*/
 startButton.addEventListener("click", function(){
+    roundCountdown = 3;
+    answer.style.borderColor = "green";
     if (roundCountdown === 3) {
         startButton.classList.add("hidden");
         roundCountdownDiv.classList.remove("hidden");
         hideProblems();
         roundStartTimer();
     }
+    if (timeRemaining.innerText === ` Time's Up!`) {
+        timeRemaining.innerText = '';
+    }
 });
 
-/*EVENT LISTENER - PLAYER RETURNS ANSWER*/
-
-//NOTE: NEED TO DISABLE SO A NEW PROBLEM CANNOT BE GENERATED UNTIL START IS PRESSED
+/*SUBMIT ANSWER*/
 num3.addEventListener('keypress', function(e) {
     if (e.key === 'Enter'){
         userAnswer = answer.value;
@@ -278,7 +287,15 @@ num3.addEventListener('keypress', function(e) {
     }
 });
 
-
+/*START A NEW GAME*/
+newGameButton.addEventListener("click", function(){
+    newGameButton.classList.add("hidden");
+    startButton.classList.remove("hidden");
+    levelNumber = 0;
+    points = 0;
+    playerScore.innerText = points;
+    level.innerText = levelNumber;
+});
 
 /* 
 Friday
