@@ -19,6 +19,7 @@ h1 {
     font-size: 3rem;
 }
 
+
 .header {
     font-family: 'Bangers', cursive;
     text-align: center;
@@ -27,7 +28,7 @@ h1 {
 .header_main {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-areas: ". title title title instructions";
+    grid-template-areas: "settings title title title instructions";
     justify-items: center;
     align-items: center;
     text-overflow: ellipsis;
@@ -41,10 +42,17 @@ h1 {
     -webkit-background-clip: text;
     animation-name: moveInTop;
     animation-duration: 5s; 
+    padding: 2rem;
 }
 
 .m {
     font-size: 15rem; /* FOR LETTER M IN TITLE h1 ELEMENT */
+}
+
+#settings_icon_link {
+    grid-area: settings;
+    height: 2.5rem;
+    width: 2.5rem;
 }
 
 #instructions_link {
@@ -219,6 +227,10 @@ input[type=number]::-webkit-outer-spin-button {
     color: green;
 }
 
+.hidden {
+    display: none;
+}
+
 /********************************************************************/
 /* INSTRUCTION POP UP STYLE */
 
@@ -235,7 +247,8 @@ input[type=number]::-webkit-outer-spin-button {
     overflow: hidden;
 }
 
-#instructions_content {
+#instructions_content,
+#settings_content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -249,7 +262,7 @@ input[type=number]::-webkit-outer-spin-button {
                          "win"
                          "footer"
                          ;
-    gap: 3rem;
+    gap: 2rem;
     width: 75%;
     height: 50rem;
     background-color: white;
@@ -258,12 +271,14 @@ input[type=number]::-webkit-outer-spin-button {
     overflow: hidden;
 }
 
-#instructions:target {
+#instructions:target,
+#settings:target {
     opacity: 1;
     visibility: visible;
 }
 
-.instructions_header {
+#instructions_header,
+#settings_header {
     grid-area: title;
     background-color: black;
     color: white;
@@ -307,16 +322,23 @@ background-color: black;
     padding: 0 2rem 0 2rem;
 }
 
-#instructions_close {
+#instructions_close,
+#settings_close {
     grid-area: title;
 }
 
 #instructions_close:link,
 #instructions_close:visited {
+    text-align: center;
+}
+
+#instructions_close:link,
+#instructions_close:visited,
+#settings_close:link,
+#settings_close:visited {
     color: white;
     position: absolute;
     justify-self: end;
-    align-self: center;
     padding-right: 2rem;
     font-size: 3.5rem;
     text-decoration: none;
@@ -324,12 +346,92 @@ background-color: black;
     transition: all .3s;
 }
 
-#instructions_close:hover {
+#instructions_close:hover,
+#settings_close:hover {
     color: red;
 }
 
-.hidden {
-    display: none;
+/********************************************************************/
+/* SETTINGS POP UP STYLE */
+
+#settings{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 80%);
+    opacity: 1;
+    visibility: hidden;
+    transition: all .3s;
+    overflow: hidden;
+}
+
+#settings_content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-areas: "title"
+                         "settings"
+                         "footer"
+                         ;
+    width: 30%;
+    height:30rem;
+}
+
+#settings_header_heading {
+    position: absolute;
+    padding-top: .5rem;
+}
+
+#settings_close:link,
+#settings_close:visited {
+    font-size: 3.5rem;
+}
+
+.settings_form {
+    grid-area: settings;
+    margin-left: 2rem;
+}
+
+#min_add_sub,
+#max_add_sub,
+#min_mult_div,
+#max_mult_div {
+    width: 3rem;
+    height: 2rem;
+    border-radius: .5rem;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.value_label {
+    font-size: 1.7rem;
+}
+
+.settings_buttons {
+    grid-area: footer;
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+    width: 100%;
+    z-index: 1;
+}
+
+#update_settings_button,
+#reset_settings_button {
+    width: 13rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    border: none;
+    align-self: center;
+    outline: none;
+}
+
+#update_settings_button:hover,
+#reset_settings_button:hover {
+    background-color: #cecbcb;
 }
 
 /********************************************************************/

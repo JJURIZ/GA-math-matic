@@ -5,7 +5,7 @@
 
 
  # Goal
- Reach 101 points in as few rounds as possible. 
+ Reach 101 points in 25 rounds or less. 
 
  # How to Play MathMatic
 To begin, click the `Start` button. 
@@ -208,3 +208,5 @@ difficultyLevel(levelNumber);
 Minimum screen size = 1024 x 768 
 Recommended for computer or iPad
 
+
+  Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>

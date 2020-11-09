@@ -20,7 +20,19 @@ const num1 = document.getElementById('num1'),
       startButton = document.getElementById("start_button"),
       newGameButton = document.getElementById("newgame_button"),
 
-      maxPoints = 101;
+      settingsMinAddSub = document.getElementById("min_add_sub"),
+      settingsManAddSub = document.getElementById("max_add_sub"),
+      settingsMinMultDiv = document.getElementById("min_mult_div"),
+      settingsMaxMultDiv = document.getElementById("max_mult_div"),
+
+      settingsUpdateButton = document.getElementById("update_settings_button"),
+      settingsResetButton = document.getElementById("reset_settings_button"),
+
+      maxPoints = 101,
+      resetValueMinDifficultyLevelAddSub = 0,
+      resetValueMaxDifficultyLevelAddSub = 10,
+      resetValueMinDifficultyMultiplyDivide = 0,
+      resetValueMaxDifficultyMultiplyDivide = 6;
 
 let value1,
     value2,
@@ -34,7 +46,7 @@ let value1,
 
     computerAnswer,
     userAnswer,
-    roundNumber = 6,
+    roundNumber = 0,
     points = 0,
     timer = 31,
     roundCountdown = 3;
@@ -127,6 +139,10 @@ const roundPicker = () => {
     } else if (roundNumber > 6) {
         return operatorArray[randy(0,4)]();
     }
+
+    // if (roundNumber === 50) {
+    //     return operatorArray[0, operatorArray.length](); // POSSIBLE SOLUTION TO CHOOSING WHICH OPERATIONS
+    // }
 }
 
 /*GENERATE A NEW PROBLEM FOR PLAYER */
@@ -311,6 +327,31 @@ newGameButton.addEventListener("click", function(){
     round.innerText = roundNumber;
 });
 
+/*CUSTOME GAME SETTINGS*/
+
+settingsUpdateButton.addEventListener("click", function() {
+    minDifficultyLevelAddSub = parseInt(settingsMinAddSub.value);
+    maxDifficultyLevelAddSub = parseInt(settingsManAddSub.value);
+    minDifficultyMultiplyDivide = parseInt(settingsMinMultDiv.value);
+    maxDifficultyMultiplyDivide = parseInt(settingsMinMultDiv.value);
+    console.log(minDifficultyLevelAddSub);
+});
+
+settingsResetButton.addEventListener("click", function() {
+    minDifficultyLevelAddSub = resetValueMinDifficultyLevelAddSub;
+    maxDifficultyLevelAddSub = resetValueMaxDifficultyLevelAddSub;
+    minDifficultyMultiplyDivide = resetValueMinDifficultyMultiplyDivide;
+    maxDifficultyMultiplyDivide = resetValueMaxDifficultyMultiplyDivide; //DONT"FORGET INNER VALUE
+});
+
+settingsMinAddSub.addEventListener("input", function() {
+    if (settingsMinAddSub.value === '') {
+        settingsUpdateButton.disabled = true;
+    } else {
+        settingsUpdateButton.disabled = false;
+    }
+})
+
 /* 
 --Create array of all questions asked and whether they were answered correctly?- ARRAYS CREATED, NO DISPLAY
 --README (screen cap winning) NEED TO FINISH THIS WEEKEND
@@ -321,6 +362,4 @@ newGameButton.addEventListener("click", function(){
 --If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level) NOT DONE
 --Allow player to choose Practice Mode in which they can select which operation 
     they want to focus on. 
---Intro screen. Could just be HTML, could be an overlay with button (per CSS
-    Jonas course)
 */
