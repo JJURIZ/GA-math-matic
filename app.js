@@ -34,7 +34,7 @@ let value1,
 
     computerAnswer,
     userAnswer,
-    roundNumber = 24,
+    roundNumber = 6,
     points = 0,
     timer = 31,
     roundCountdown = 3;
@@ -58,33 +58,36 @@ const randy = (max, min) => {
 }
 
 /*OPERATOR FUNCTIONS (ADD, SUBTRACT, MULTIPLY, DIVIDE)*/
+
 const add = () => {
-    value3 = randy(minDifficultyLevelAddSub, maxDifficultyLevelAddSub);
-    value1 = randy(minDifficultyLevelAddSub+1 , value3);
+    value3 = randy(maxDifficultyLevelAddSub, minDifficultyLevelAddSub);
+    console.log(value3)
+    value1 = randy(value3, minDifficultyLevelAddSub+1);
+    console.log(value1)
     value2 = value3 - value1;
     operatorValue = '+';
     computerAnswer = value3;
 }
 
 const subtract = () => {
-    value3 = randy(minDifficultyLevelAddSub, maxDifficultyLevelAddSub);
-    value2 = randy(minDifficultyLevelAddSub, value3+1);
+    value3 = randy(maxDifficultyLevelAddSub, minDifficultyLevelAddSub);
+    value2 = randy(value3+1, minDifficultyLevelAddSub);
     value1 = value3 + value2;
     operatorValue = '-';
     computerAnswer = value3;
 }
 
 const multiply = () => {
-    value1 = randy(minDifficultyMultiplyDivide, maxDifficultyMultiplyDivide);
+    value1 = randy(maxDifficultyMultiplyDivide, minDifficultyMultiplyDivide);
     operatorValue = 'X';
-    value2 = randy(minDifficultyMultiplyDivide, maxDifficultyMultiplyDivide);
+    value2 = randy(maxDifficultyMultiplyDivide, minDifficultyMultiplyDivide);
     value3 = value1 * value2;
     computerAnswer = value3;
 }
 
 const divide = () => {
-    value2 = randy(minDifficultyMultiplyDivide,10);
-    value3 = randy(minDifficultyMultiplyDivide,10);
+    value2 = randy(maxDifficultyMultiplyDivide, minDifficultyMultiplyDivide);
+    value3 = randy(maxDifficultyMultiplyDivide, minDifficultyMultiplyDivide);
     value1 = value3 * value2;
     operatorValue = '/';
     computerAnswer = value3;
@@ -231,16 +234,13 @@ const difficultyLevel = (round) => {
         maxDifficultyLevelAddSub = 15;
         minDifficultyMultiplyDivide = 4;
         maxDifficultyMultiplyDivide = 11;
-    } else if (round === 20) {
+    } else if (round === 19) {
         minDifficultyLevelAddSub = 7;
         maxDifficultyLevelAddSub = 30;
         minDifficultyMultiplyDivide = 6;
         maxDifficultyMultiplyDivide = 15;
     }
 }
-
-difficultyLevel(roundNumber);
-
 
 /*START ROUND*/
 let startRoundTimer = function() {
@@ -273,6 +273,7 @@ let startRoundTimer = function() {
 /*START A NEW ROUND*/
 startButton.addEventListener("click", function(){
     roundCountdown = 3;
+    difficultyLevel(roundNumber);
     answer.style.borderColor = "green";
     timer = 31; // COULD CREATE A CONSTANT IF I WANT A CONSISTENT RESET
 
