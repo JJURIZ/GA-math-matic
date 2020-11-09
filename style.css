@@ -191,6 +191,7 @@ input[type=number]::-webkit-outer-spin-button {
 .start_container {
     display: flex;
     justify-content: center;
+    outline: none;
 }
 
 #start_button,
@@ -201,6 +202,7 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: white;
     animation-name: moveInBottom;
     animation-duration: 5s; 
+    outline: none;
 }
 
 .green_time {
@@ -393,11 +395,15 @@ background-color: black;
     margin-left: 2rem;
 }
 
+label {
+    font-size: 1.7rem;
+}
+
 #min_add_sub,
 #max_add_sub,
 #min_mult_div,
 #max_mult_div {
-    width: 3rem;
+    width: 5rem;
     height: 2rem;
     border-radius: .5rem;
     margin-left: 1rem;
@@ -405,9 +411,6 @@ background-color: black;
     text-align: center;
 }
 
-.value_label {
-    font-size: 1.7rem;
-}
 
 .settings_buttons {
     grid-area: footer;

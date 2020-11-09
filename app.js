@@ -21,12 +21,13 @@ const num1 = document.getElementById('num1'),
       newGameButton = document.getElementById("newgame_button"),
 
       settingsMinAddSub = document.getElementById("min_add_sub"),
-      settingsManAddSub = document.getElementById("max_add_sub"),
+      settingsMaxAddSub = document.getElementById("max_add_sub"),
       settingsMinMultDiv = document.getElementById("min_mult_div"),
       settingsMaxMultDiv = document.getElementById("max_mult_div"),
 
       settingsUpdateButton = document.getElementById("update_settings_button"),
       settingsResetButton = document.getElementById("reset_settings_button"),
+      settingsUpdatedConfirmed = document.getElementById("settings_updated_confirmed"),
 
       maxPoints = 101,
       resetValueMinDifficultyLevelAddSub = 0,
@@ -331,17 +332,24 @@ newGameButton.addEventListener("click", function(){
 
 settingsUpdateButton.addEventListener("click", function() {
     minDifficultyLevelAddSub = parseInt(settingsMinAddSub.value);
-    maxDifficultyLevelAddSub = parseInt(settingsManAddSub.value);
+    maxDifficultyLevelAddSub = parseInt(settingsMaxAddSub.value);
     minDifficultyMultiplyDivide = parseInt(settingsMinMultDiv.value);
     maxDifficultyMultiplyDivide = parseInt(settingsMinMultDiv.value);
-    console.log(minDifficultyLevelAddSub);
+   
+    settingsUpdatedConfirmed.textContent = "Settings Updated";
 });
 
 settingsResetButton.addEventListener("click", function() {
     minDifficultyLevelAddSub = resetValueMinDifficultyLevelAddSub;
+    settingsMinAddSub.value = resetValueMinDifficultyLevelAddSub;
     maxDifficultyLevelAddSub = resetValueMaxDifficultyLevelAddSub;
+    settingsMaxAddSub.value = resetValueMaxDifficultyLevelAddSub;
     minDifficultyMultiplyDivide = resetValueMinDifficultyMultiplyDivide;
-    maxDifficultyMultiplyDivide = resetValueMaxDifficultyMultiplyDivide; //DONT"FORGET INNER VALUE
+    settingsMinMultDiv.value = resetValueMinDifficultyMultiplyDivide;
+    maxDifficultyMultiplyDivide = resetValueMaxDifficultyMultiplyDivide;
+    settingsMaxMultDiv.value = resetValueMaxDifficultyMultiplyDivide;
+
+    settingsUpdatedConfirmed.textContent = "Original Settings Restored";
 });
 
 settingsMinAddSub.addEventListener("input", function() {

@@ -3,6 +3,9 @@
  
  Race to the finish in this fast-paced math challenge. The slower you go, the harder the problems get. Think fast! 
 
+## Game Requirements
+Minimum screen size = 1024 x 768 
+Recommended for computer or iPad
 
  # Goal
  Reach 101 points in 25 rounds or less. 
@@ -204,9 +207,19 @@ const difficultyLevel = (level) => {
 difficultyLevel(levelNumber);
 ```
 
-## Game Requirements
-Minimum screen size = 1024 x 768 
-Recommended for computer or iPad
+
+# The Design Process - An Overview
+Original pen and paper (aka rapid prototyping tools) brainstorm for game idea. 
+![Original Brainstorm on Scrap Paper](./assets/originalidea.png)
 
 
-  Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+`Adobe XD` Wireframe sketch of game layout. The original idea was for the player to pop as many bubbles of various point values which would correspond to the questions asked in the next phase. 
+![Original Wireframe of Canvas Game](./assets/OriginalWireframeInitialGameState.png)
+Original sketch of the math portion of the game. 
+![Original Wireframe of Math Game](./assets/OriginalWireframeMathPortion.png)
+Updated sketch of the game (which eliminated the canvas bubble popping portion).
+![Updated Wireframe of Math Game](./assets/UpdatedWireframeMath.png)
+After selecting several `Google fonts` I created this sheet and asked my family to pick their favorite. 
+![Font Selection](./assets/FontSelection.png)
+
+  Settings `gear` icon made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [flaticon](https://www.flaticon.com/).
