@@ -140,10 +140,6 @@ const roundPicker = () => {
     } else if (roundNumber > 6) {
         return operatorArray[randy(0,4)]();
     }
-
-    // if (roundNumber === 50) {
-    //     return operatorArray[0, operatorArray.length](); // POSSIBLE SOLUTION TO CHOOSING WHICH OPERATIONS
-    // }
 }
 
 /*GENERATE A NEW PROBLEM FOR PLAYER */
