@@ -62,14 +62,14 @@ h1 {
     display: grid;
     border-radius: 5px;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "level timer points";
+    grid-template-areas: "round timer points";
     justify-content: center;
 }
 
 .points,
 #timer,
-.level,
-#level_value,
+.round,
+#round_value,
 #player_points,
 #time_remaining {
     font-size: 2rem;
@@ -87,8 +87,8 @@ h1 {
     margin: 0 auto;
 }
 
-.level {
-    grid-area: level;
+.round {
+    grid-area: round;
     justify-self: start;
     padding-left: 2.5rem;
 }

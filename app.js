@@ -12,7 +12,7 @@ const num1 = document.getElementById('num1'),
       roundCountdownDiv = document.querySelector(".round_countdown"),
       mathroundContainer =  document.getElementById("mathround_container"),
 
-      level = document.getElementById("level_value"),
+      round = document.getElementById("round_value"),
       timerLabel = document.getElementById("timer"),
       timeRemaining = document.getElementById("time_remaining"),
       playerScore = document.getElementById("player_points"),
@@ -34,7 +34,7 @@ let value1,
 
     computerAnswer,
     userAnswer,
-    levelNumber = 0,
+    roundNumber = 24,
     points = 0,
     timer = 31,
     roundCountdown = 3;
@@ -52,8 +52,8 @@ let answerArray = [],
 
 /*RANDOM NUMBER GENERATOR*/
 const randy = (max, min) => {
-    min = Math.ceil(min);
     max = Math.floor(max);
+    min = Math.ceil(min);
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
@@ -108,27 +108,27 @@ const gameOver = () => {
 }
 
 /*ASSIGNS OPERATIONS BASED ON CURRENT LEVEL*/
-const levelPicker = () => {
-    if (levelNumber === 1) {
+const roundPicker = () => {
+    if (roundNumber === 1) {
         return operatorArray[0]();
-    } else if (levelNumber === 2) {
+    } else if (roundNumber === 2) {
         return operatorArray[1]();
-    } else if (levelNumber === 3) {
+    } else if (roundNumber === 3) {
         return operatorArray[2]();
-    } else if (levelNumber === 4) {
+    } else if (roundNumber === 4) {
         return operatorArray[3]();
-    } else if (levelNumber === 5) {
+    } else if (roundNumber === 5) {
         return operatorArray[randy(0,2)]();
-    } else if (levelNumber === 6) {
+    } else if (roundNumber === 6) {
         return operatorArray[randy(2,4)]();
-    } else if (levelNumber > 6) {
+    } else if (roundNumber > 6) {
         return operatorArray[randy(0,4)]();
     }
 }
 
 /*GENERATE A NEW PROBLEM FOR PLAYER */
 const generateProblem = () => {
-    levelPicker();
+    roundPicker();
     num1.textContent = value1;
     operator.textContent = operatorValue;
     num2.textContent = value2;
@@ -207,22 +207,31 @@ const startTimer = () => {
             roundCountdownDiv.innerText = "Game Over. You Win!"
             gameOver();
         }
+
+        if (roundNumber === 26 && points < 101) {
+            clearInterval(countdown);
+            roundCountdownDiv.classList.remove("hidden");
+            hideProblemContainers();
+            roundCountdownDiv.innerText = "Better Luck Next Time!"
+            gameOver();
+        }
+    
     }, 1000);
 }
 
 /*ADJUSTS DIFFICULTY (I.E. AS LEVEL INCREASES, OPERAND VALUES INCREASE)*/
-const difficultyLevel = (level) => {
-    if (level === 8) {
+const difficultyLevel = (round) => {
+    if (round === 8) {
         minDifficultyLevelAddSub = 2;
         maxDifficultyLevelAddSub = 15;
         minDifficultyMultiplyDivide = 2;
         maxDifficultyMultiplyDivide = 9;
-    } else if (level === 13) {
+    } else if (round === 13) {
         minDifficultyLevelAddSub = 5;
         maxDifficultyLevelAddSub = 15;
         minDifficultyMultiplyDivide = 4;
         maxDifficultyMultiplyDivide = 11;
-    } else if (level === 20) {
+    } else if (round === 20) {
         minDifficultyLevelAddSub = 7;
         maxDifficultyLevelAddSub = 30;
         minDifficultyMultiplyDivide = 6;
@@ -230,7 +239,7 @@ const difficultyLevel = (level) => {
     }
 }
 
-difficultyLevel(levelNumber);
+difficultyLevel(roundNumber);
 
 
 /*START ROUND*/
@@ -249,8 +258,8 @@ let startRoundTimer = function() {
         roundCountdownDiv.classList.add("hidden");
         showProblemContainers();
         answer.disabled = false;
-        levelNumber += 1;
-        level.innerText = levelNumber;
+        roundNumber += 1;
+        round.innerText = roundNumber;
         timeRemaining.classList.remove("red_time");
         timeRemaining.classList.add("green_time");
         startTimer();
@@ -295,10 +304,10 @@ newGameButton.addEventListener("click", function(){
     startButton.classList.remove("hidden");
     timeRemaining.textContent = ``;
     roundCountdownDiv.innerText = "";
-    levelNumber = 0;
+    roundNumber = 0;
     points = 0;
     playerScore.innerText = points;
-    level.innerText = levelNumber;
+    round.innerText = roundNumber;
 });
 
 /* 
