@@ -214,7 +214,7 @@ The player has not reached 101 points after completing round 25.
 
 # The Design Process - An Overview
 Original pen and paper (aka rapid prototyping tools) brainstorm for game idea. 
-![Original Brainstorm on Scrap Paper](./assets/originalidea.png)
+![Original Brainstorm on Scrap Paper](./assets/OriginalIdea.png)
 
 
 `Adobe XD` Wireframe sketch of game layout. The original idea was for the player to pop as many bubbles of various point values which would correspond to the questions asked in the next phase. 
