@@ -14,16 +14,16 @@ To begin, click the `Start` button.
 
 A three second countdown will appear before each round begins. As a problem appears, answer as quickly as possible by typing in the answer field and clicking `Enter`. Each right answer is 1 point. A wrong answer nets no points. 
 
-When you reach 101 points the game is over. Try to reach the goal in under 10 rounds. The more rounds you play, the harder the problems.
+When you reach 101 points the game is over. Try to reach the goal in under 10 rounds. The more rounds you play, the harder the problems. If you do not reach 101 points by the end of round 25, the game is over.
 
 After you've won, click the `New Game` to play again.
 
 ## Install Instructions
 There are two methods to play MathMatic.
-### Method One
+### <ins>Method One<ins>
 Go to [jeremyuriz.com/projectOne/index.html](jeremyuriz.com/projectOne/index.html) and start playing!
 
-### Method Two
+### <ins>Method Two<ins>
 1. `Fork` and `Clone` the repository [here](https://github.com/JJURIZ/GA-math-matic).
 2. Once cloned, open the [index.html] file in VS Code or an editor of your choice. 
 3. If using [LiveServer](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) click "Go Live"
@@ -31,7 +31,7 @@ Go to [jeremyuriz.com/projectOne/index.html](jeremyuriz.com/projectOne/index.htm
 4. Play to your heart's content.
 
 # Technologies Used
-## HTML
+### HTML
 The primary screen is comprised of a header, game stats, playing field, and `Start` / `New Game` button. 
 Playing field HTML is minimal as shown below:
 ```html
@@ -51,9 +51,9 @@ Playing field HTML is minimal as shown below:
         </div>
 ```
 
-## CSS
+### CSS
 Extensive use of [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) was used to layout the game. 
-### Game Container with Grid Layout
+### <ins>Game Container with Grid Layout<ins>
 ```css
 .mathround_container {
     display: grid;
@@ -68,7 +68,7 @@ Extensive use of [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS
 ```
 
 In order to keep the instructions from cluttering the primary screen a popup was created using CSS.
-### Popup Instructions Style
+### <ins>Popup Instructions Style<ins>
 ```css
 #instructions{
     height: 100vh;
@@ -107,7 +107,7 @@ In order to keep the instructions from cluttering the primary screen a popup was
 }
 ```
 
-## JavaScript
+### JavaScript
 The core code powering MathMatic are the basic operations: add, subtract, multiply, and divide. In order to avoid unconventional problems a different approach was taken to construct the questions. Rather than generating a random number for the two operands, I started with the answer and worked backwards. By generating the answer I was able to work backwards and avoid subtraction problems resulting in negative numbers or division with remainers. 
 
 In each operation, `value3` represents the expected answer. In the addition function a random number (determined by the max/min values passed in) is selected. 
@@ -205,7 +205,7 @@ const difficultyLevel = (level) => {
 
 difficultyLevel(levelNumber);
 ```
-# Video - Win and Lose Conditions
+## Video - Win and Lose Conditions
 The player has reached 101 points before reaching round 25.
 [![Win Condition Met](./assets/WinCondition.png)](https://gph.is/g/ZyDe9We)
 
@@ -225,8 +225,6 @@ Updated sketch of the game (which eliminated the canvas bubble popping portion).
 ![Updated Wireframe of Math Game](./assets/UpdatedWireframeMath.png)
 After selecting several `Google fonts` I created this sheet and asked my family to pick their favorite. 
 ![Font Selection](./assets/FontSelection.png)
-
-
 
 
   Settings `gear` icon made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [flaticon](https://www.flaticon.com/).
