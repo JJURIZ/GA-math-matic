@@ -95,7 +95,7 @@ const divide = () => {
 
 let operatorArray = [add, subtract, multiply, divide]; // Adds each function to an array in order to allow specific or random operators in a round //
 
-/*DOES USER ANSWER MATCH COMPUTER ANSWER?*/
+/*COMPARE USER ANSWER TO COMPUTER ANSWER*/
 const checkAnswer = () => {
   if (computerAnswer === parseInt(userAnswer)) {
     points += 1;
@@ -347,7 +347,6 @@ settingsMinAddSub.addEventListener("input", function () {
 /*NICE TO HAVES*/
 /*
 --If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level) NOT DONE
---Allow player to choose Practice Mode in which they can select which operation 
-    they want to focus on. 
+--Allow player to choose Practice Mode in which they can select an operation to focus on. 
 --Display questions answered right/wrong. Arrays are already created for this information. 
 */
