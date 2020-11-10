@@ -12,11 +12,11 @@ Minimum screen size = 1024 x 768
  ## How to Play MathMatic
 To begin, click the `Start` button. 
 
-A three second countdown will appear before each round begins. As a problem appears, answer as quickly as possible by typing in the answer field and clicking `Enter`. Each right answer is 1 point. A wrong answer nets no points. 
+A three second countdown is given before each round. As a problem appears, answer as quickly as possible by typing in the answer field and clicking `Enter`. Each right answer is 1 point. A wrong answer nets no points. 
 
 When you reach 101 points the game is over. Try to reach the goal in under 10 rounds. The more rounds you play, the harder the problems. If you do not reach 101 points by the end of round 25, the game is over.
 
-After you've won, click the `New Game` to play again.
+After you've won, click `New Game` to play again.
 
 ## Install Instructions
 There are two methods to play MathMatic.
