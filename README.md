@@ -1,16 +1,15 @@
 # MathMatic
-## Test Your Math Skills
+### Test Your Math Skills
  
  Race to the finish in this fast-paced math challenge. The slower you go, the harder the problems get. Think fast! 
 
-## Game Requirements
+### <ins>Game Requirements<ins>
 Minimum screen size = 1024 x 768 
-Recommended for computer or iPad
 
- # Goal
+ ### <ins>Goal<ins>
  Reach 101 points in 25 rounds or less. 
 
- # How to Play MathMatic
+ ## How to Play MathMatic
 To begin, click the `Start` button. 
 
 A three second countdown will appear before each round begins. As a problem appears, answer as quickly as possible by typing in the answer field and clicking `Enter`. Each right answer is 1 point. A wrong answer nets no points. 
@@ -19,7 +18,7 @@ When you reach 101 points the game is over. Try to reach the goal in under 10 ro
 
 After you've won, click the `New Game` to play again.
 
-# Install Instructions
+## Install Instructions
 There are two methods to play MathMatic.
 ### Method One
 Go to [jeremyuriz.com/projectOne/index.html](jeremyuriz.com/projectOne/index.html) and start playing!
@@ -206,7 +205,12 @@ const difficultyLevel = (level) => {
 
 difficultyLevel(levelNumber);
 ```
+# Video - Win and Lose Conditions
+The player has reached 101 points before reaching round 25.
+[![Win Condition Met](./assets/WinCondition.png)](https://gph.is/g/ZyDe9We)
 
+The player has not reached 101 points after completing round 25.
+[![Lose Condition Met](./assets/LoseCondition.png)](https://gph.is/g/apLQBeo)
 
 # The Design Process - An Overview
 Original pen and paper (aka rapid prototyping tools) brainstorm for game idea. 
@@ -221,5 +225,8 @@ Updated sketch of the game (which eliminated the canvas bubble popping portion).
 ![Updated Wireframe of Math Game](./assets/UpdatedWireframeMath.png)
 After selecting several `Google fonts` I created this sheet and asked my family to pick their favorite. 
 ![Font Selection](./assets/FontSelection.png)
+
+
+
 
   Settings `gear` icon made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [flaticon](https://www.flaticon.com/).
