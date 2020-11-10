@@ -1,77 +1,76 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-size: 62.5%; /*10px / 16px (browser default) -> 1rem = 10px */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 62.5%; /*10px / 16px (browser default) -> 1rem = 10px */
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .container {
-    width: 80vw;
-    margin: auto;
+  width: 80vw;
+  margin: auto;
 }
 
 h1 {
-    font-weight: 400;
-    font-size: 3rem;
+  font-weight: 400;
+  font-size: 3rem;
 }
 
-
 .header {
-    font-family: 'Bangers', cursive;
-    text-align: center;
+  font-family: "Bangers", cursive;
+  text-align: center;
 }
 
 .header_main {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-areas: "settings title title title instructions";
-    justify-items: center;
-    align-items: center;
-    text-overflow: ellipsis;
-    color: transparent
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas: "settings title title title instructions";
+  justify-items: center;
+  align-items: center;
+  text-overflow: ellipsis;
+  color: transparent;
 }
 
 .header_main_title {
-    grid-area: title;
-    font-size: 12rem;
-    background: -webkit-linear-gradient( red, blue);
-    -webkit-background-clip: text;
-    animation-name: moveInTop;
-    animation-duration: 5s; 
-    padding: 2rem;
+  grid-area: title;
+  font-size: 12rem;
+  background: -webkit-linear-gradient(red, blue);
+  -webkit-background-clip: text;
+  animation-name: moveInTop;
+  animation-duration: 5s;
+  padding: 2rem;
 }
 
 .m {
-    font-size: 15rem; /* FOR LETTER M IN TITLE h1 ELEMENT */
+  font-size: 15rem; /* FOR LETTER M IN TITLE h1 ELEMENT */
 }
 
 #settings_icon_link {
-    grid-area: settings;
-    height: 2.5rem;
-    width: 2.5rem;
+  grid-area: settings;
+  height: 2.5rem;
+  width: 2.5rem;
 }
 
 #instructions_link {
-    grid-area: instructions;
-    font-family: 'Bangers', cursive;
-    justify-content: right;
+  grid-area: instructions;
+  font-family: "Bangers", cursive;
+  justify-content: right;
 }
 
 .popup {
-    text-decoration: none;
-    text-align: center;
+  text-decoration: none;
+  text-align: center;
 }
 
 .game_state {
-    display: grid;
-    border-radius: 5px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "round timer points";
-    justify-content: center;
+  display: grid;
+  border-radius: 5px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "round timer points";
+  justify-content: center;
 }
 
 .points,
@@ -80,49 +79,49 @@ h1 {
 #round_value,
 #player_points,
 #time_remaining {
-    font-size: 2rem;
-    font-family: 'Bangers', cursive;
+  font-size: 2rem;
+  font-family: "Bangers", cursive;
 }
 
 .points {
-    grid-area: points;
-    justify-self: end;
-    padding-right: 1rem;
+  grid-area: points;
+  justify-self: end;
+  padding-right: 1rem;
 }
 
 #timer {
-    grid-area: timer;
-    margin: 0 auto;
+  grid-area: timer;
+  margin: 0 auto;
 }
 
 .round {
-    grid-area: round;
-    justify-self: start;
-    padding-left: 2.5rem;
+  grid-area: round;
+  justify-self: start;
+  padding-left: 2.5rem;
 }
 
 .mathround_container {
-    display: grid;
-    justify-items: center;
-    height: 40vh;
-    width: 80vw;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
-    grid-template-areas: "num1 operator num2 equals num3";                     
-    gap: 1rem;
+  display: grid;
+  justify-items: center;
+  height: 40vh;
+  width: 80vw;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "num1 operator num2 equals num3";
+  gap: 1rem;
 }
 
 .gradient_border {
-    width: 82vw;
-    padding: 1rem;
-    position: relative;
-    background: linear-gradient(to right, red, blue);
-    border-radius: 3rem;
-  }
-  
+  width: 82vw;
+  padding: 1rem;
+  position: relative;
+  background: linear-gradient(to right, red, blue);
+  border-radius: 3rem;
+}
+
 .mathround_main {
-    background-color: white;
-    border-radius: 2.5rem;
+  background-color: white;
+  border-radius: 2.5rem;
 }
 
 #num1,
@@ -130,329 +129,334 @@ h1 {
 #num2,
 #equals,
 #num3 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    font-size: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 6rem;
 }
 
 #num1 {
-    grid-area: num1;
+  grid-area: num1;
 }
 
 #operator {
-    grid-area: operator;
+  grid-area: operator;
 }
 
 #num2 {
-    grid-area: num2;
+  grid-area: num2;
 }
 
 #equals {
-    grid-area: equals;
-    font-size: 8rem;
+  grid-area: equals;
+  font-size: 8rem;
 }
 
 #num3 {
-    grid-area: num3;
-    position: relative;
+  grid-area: num3;
+  position: relative;
 }
 
 .answer {
-    text-align: center;
-    border: none;
-    height: 14vh;
-    width: 14vw;
-    font-size: 6rem;
-    padding-right: 20px;
-    outline: none;
-    border: 5px solid;
-    border-color: green;
-    border-radius: 3rem;
+  text-align: center;
+  border: none;
+  height: 14vh;
+  width: 14vw;
+  font-size: 6rem;
+  padding-right: 20px;
+  outline: none;
+  border: 5px solid;
+  border-color: green;
+  border-radius: 3rem;
 }
 
 .answer:after {
-    content: '';
-    width: 20px;
-    height: 2px;
-    background: black;
-    opacity: 0;
-    display: inline-block;
-  }
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: black;
+  opacity: 0;
+  display: inline-block;
+}
 
 /* REMOVES INCREMENT/DECREMENT FROM INPUT */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .start_container {
-    display: flex;
-    justify-content: center;
-    outline: none;
+  display: flex;
+  justify-content: center;
+  outline: none;
 }
 
 #start_button,
 #newgame_button {
-    font-size: 5rem;
-    font-family: 'Bangers', cursive;
-    border: none;
-    background-color: white;
-    animation-name: moveInBottom;
-    animation-duration: 5s; 
-    outline: none;
-    cursor: pointer;
+  font-size: 5rem;
+  font-family: "Bangers", cursive;
+  border: none;
+  background-color: white;
+  animation-name: moveInBottom;
+  animation-duration: 5s;
+  outline: none;
+  cursor: pointer;
 }
 
 .green_time {
-    color: green;
+  color: green;
 }
 
 .black_time {
-    color: black;
+  color: black;
 }
 
 .red_time {
-    color: red;
+  color: red;
 }
 
 .round_countdown {
-    grid-area: num2;
-    width: 60vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    font-size: 10rem;
-    font-family: 'Bangers', cursive;
-    color: green;
+  grid-area: num2;
+  width: 60vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 10rem;
+  font-family: "Bangers", cursive;
+  color: green;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 /********************************************************************/
 /* INSTRUCTION POP UP STYLE */
 
-#instructions{
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0, 80%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all .3s;
-    overflow: hidden;
+#instructions {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 80%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  overflow: hidden;
 }
 
 #instructions_content,
 #settings_content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, 1fr );
-    grid-template-areas: "title"
-                         "rules"
-                         "play"
-                         "win"
-                         "footer"
-                         ;
-    gap: 2rem;
-    width: 75%;
-    height: 50rem;
-    background-color: white;
-    transform: translate(-50%, -50%);
-    border-radius: .5rem;
-    overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas:
+    "title"
+    "rules"
+    "play"
+    "win"
+    "footer";
+  gap: 2rem;
+  width: 75%;
+  height: 50rem;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 #instructions:target,
 #settings:target {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 #instructions_header,
 #settings_header {
-    grid-area: title;
-    background-color: black;
-    color: white;
-    padding: .5rem 0 .5rem 2.5rem;
-    font-family: 'Bangers', cursive;
-    position: relative;
+  grid-area: title;
+  background-color: black;
+  color: white;
+  padding: 0.5rem 0 0.5rem 2.5rem;
+  font-family: "Bangers", cursive;
+  position: relative;
 }
 #instructions_header_heading {
-    position: absolute;
-    top: 25%;
+  position: absolute;
+  top: 25%;
 }
 
 #instructions_rules {
-    grid-area: rules;
+  grid-area: rules;
 }
 #instructions_play {
-    grid-area: play;
+  grid-area: play;
 }
 
 #instructions_win {
-grid-area: win;
+  grid-area: win;
 }
 
 #footer {
-grid-area: footer;
-background-color: black;
+  grid-area: footer;
+  background-color: black;
 }
 
 #instructions_rules h2,
-#instructions_play h2, 
+#instructions_play h2,
 #instructions_win h2 {
-    font-family: 'Bangers', cursive;
-    font-size: 2rem;
-    padding-left: 1rem;
+  font-family: "Bangers", cursive;
+  font-size: 2rem;
+  padding-left: 1rem;
 }
 
 #instructions_rules p,
-#instructions_play p, 
+#instructions_play p,
 #instructions_win p {
-    font-size: 1.5rem;
-    padding: 0 2rem 0 2rem;
+  font-size: 1.5rem;
+  padding: 0 2rem 0 2rem;
 }
 
 #instructions_close,
 #settings_close {
-    grid-area: title;
+  grid-area: title;
 }
 
 #instructions_close:link,
 #instructions_close:visited {
-    text-align: center;
+  text-align: center;
 }
 
 #instructions_close:link,
 #instructions_close:visited,
 #settings_close:link,
 #settings_close:visited {
-    color: white;
-    position: absolute;
-    justify-self: end;
-    padding-right: 2rem;
-    font-size: 3.5rem;
-    text-decoration: none;
-    display: inline-block;
-    transition: all .3s;
+  color: white;
+  position: absolute;
+  justify-self: end;
+  padding-right: 2rem;
+  font-size: 3.5rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s;
 }
 
 #instructions_close:hover,
 #settings_close:hover {
-    color: red;
+  color: red;
 }
 
 /********************************************************************/
 /* SETTINGS POP UP STYLE */
 
-#settings{
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0, 80%);
-    opacity: 1;
-    visibility: hidden;
-    transition: all .3s;
-    overflow: hidden;
+#settings {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 80%);
+  opacity: 1;
+  visibility: hidden;
+  transition: all 0.3s;
+  overflow: hidden;
 }
 
 #settings_content {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr 1fr;
-    grid-template-areas: "title"
-                         "settings"
-                         "footer"
-                         ;
-    width: 30%;
-    height:30rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-areas:
+    "title"
+    "settings"
+    "footer";
+  width: 30%;
+  height: 30rem;
 }
 
 #settings_header_heading {
-    position: absolute;
-    padding-top: .5rem;
+  position: absolute;
+  padding-top: 0.5rem;
 }
 
 #settings_close:link,
 #settings_close:visited {
-    font-size: 3.5rem;
+  font-size: 3.5rem;
 }
 
 .settings_form {
-    grid-area: settings;
-    margin-left: 2rem;
+  grid-area: settings;
+  margin-left: 2rem;
 }
 
 label {
-    font-size: 1.7rem;
+  font-size: 1.7rem;
 }
 
 #min_add_sub,
 #max_add_sub,
 #min_mult_div,
 #max_mult_div {
-    width: 5rem;
-    height: 2rem;
-    border-radius: .5rem;
-    margin-left: 1rem;
-    font-size: 1.5rem;
-    text-align: center;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
-
 .settings_buttons {
-    grid-area: footer;
-    display: flex;
-    justify-content: space-evenly;
-    color: white;
-    width: 100%;
-    z-index: 1;
+  grid-area: footer;
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  width: 100%;
+  z-index: 1;
 }
 
 #update_settings_button,
 #reset_settings_button {
-    width: 13rem;
-    height: 2.5rem;
-    font-size: 1.5rem;
-    border-radius: .5rem;
-    border: none;
-    align-self: center;
-    outline: none;
+  width: 13rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  align-self: center;
+  outline: none;
 }
 
 #update_settings_button:hover,
 #reset_settings_button:hover {
-    background-color: #cecbcb;
+  background-color: #cecbcb;
 }
 
 /********************************************************************/
 
 /* KEYFRAMES FOR ANIMATION */
 @keyframes moveInBottom {
-    0% {
-      opacity: 0;
-      transform: translateY(10rem); }
-    100% {
-      opacity: 1;
-      transform: translate(0rem); } }
+  0% {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0rem);
+  }
+}
 
 @keyframes moveInTop {
-    0% {
-        opacity: 0;
-        transform: translateY(-10rem); }
-    100% {
-        opacity: 1;
-        transform: translate(0); } }
+  0% {
+    opacity: 0;
+    transform: translateY(-10rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
