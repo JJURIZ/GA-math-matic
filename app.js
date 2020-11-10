@@ -52,14 +52,12 @@ let value1,
     timer = 31,
     roundCountdown = 3;
 
-
 /****************ARRAYS****************/
 
 let answerArray = [],
     questionArray = [],
     isCorrectArray = [],
     operations = ['+', '-', '*', '/'];
-
 
 /****************FUNCTIONS****************/
 
@@ -71,12 +69,9 @@ const randy = (max, min) => {
 }
 
 /*OPERATOR FUNCTIONS (ADD, SUBTRACT, MULTIPLY, DIVIDE)*/
-
 const add = () => {
     value3 = randy(maxDifficultyLevelAddSub, minDifficultyLevelAddSub);
-    console.log(value3)
     value1 = randy(value3, minDifficultyLevelAddSub+1);
-    console.log(value1)
     value2 = value3 - value1;
     operatorValue = '+';
     computerAnswer = value3;
@@ -179,7 +174,7 @@ const showProblemContainers = () => {
     answer.classList.remove("hidden");
 }
 
-/*GAME TIMER*/
+/*GAME TIMER & WIN CONDITION CHECK*/
 const startTimer = () => {
     let countdown = setInterval(function() {
         if (timer > 0) {
@@ -324,8 +319,7 @@ newGameButton.addEventListener("click", function(){
     round.innerText = roundNumber;
 });
 
-/*CUSTOME GAME SETTINGS*/
-
+/*CUSTOM GAME SETTINGS*/
 settingsUpdateButton.addEventListener("click", function() {
     minDifficultyLevelAddSub = parseInt(settingsMinAddSub.value);
     maxDifficultyLevelAddSub = parseInt(settingsMaxAddSub.value);
@@ -348,6 +342,7 @@ settingsResetButton.addEventListener("click", function() {
     settingsUpdatedConfirmed.textContent = "Original Settings Restored";
 });
 
+/*CUSTOM SETTING - PREVENTS USER FROM LEAVING VALUE BLANK (RESULTING IN NaN)*/
 settingsMinAddSub.addEventListener("input", function() {
     if (settingsMinAddSub.value === '') {
         settingsUpdateButton.disabled = true;
@@ -356,14 +351,10 @@ settingsMinAddSub.addEventListener("input", function() {
     }
 })
 
-/* 
---Create array of all questions asked and whether they were answered correctly?- ARRAYS CREATED, NO DISPLAY
---README (screen cap winning) NEED TO FINISH THIS WEEKEND
-*/
-
 /*NICE TO HAVES*/
 /*
 --If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level) NOT DONE
 --Allow player to choose Practice Mode in which they can select which operation 
     they want to focus on. 
+--Display questions answered right/wrong. Arrays are already created for this information. 
 */
