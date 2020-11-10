@@ -234,7 +234,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /********************************************************************/
-/* INSTRUCTION POP UP STYLE */
+/* INSTRUCTION POP UP */
 
 #instructions {
   height: 100vh;
@@ -354,7 +354,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /********************************************************************/
-/* SETTINGS POP UP STYLE */
+/* SETTINGS POP UP */
 
 #settings {
   height: 100vh;
