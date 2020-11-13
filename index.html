@@ -43,7 +43,7 @@
                     <div id="num2"></div>
                     <div id="equals" class="hidden"></div>
                     <div id="num3" class="hidden">
-                        <input type="number" id="answer" class="answer hidden" min="0" max="999" />
+                        <input type="number" id="answer" class="answer hidden" min="0" max="999" autofocus/>
                     </div>
 
                     <div class="round_countdown"></div>
@@ -98,7 +98,8 @@
                 </div>
                 <a href="#mathround_container_header" id="instructions_close">&times;</a>
 
-                <form action="submit" class="settings_form">
+                <form action="submit" class="difficulty_form">
+                    <h2 class="difficulty_selection_header">Select Difficulty Level</h2>
                     <div id="value_settings">
                         <label for="min_add_sub" class="value_label">Minimum Add/Subtract</label>
                         <input type="number" id="min_add_sub" class="" value="0"/>
@@ -113,6 +114,24 @@
                         <input type="number" id="max_mult_div" class="" value="6"/>
                         <br></br>
                         <p id="settings_updated_confirmed"></p>
+                    </div>
+                </form>
+
+                <form action="submit" class="difficulty_form">
+                    <h2 class="operation_selection_header">Select Practice Operations</h2>
+                    <div id="operation_settings">
+                        <input type="checkbox" id="addition" class="operation_checkbox" name="operation" value="add"/>
+                        <label for="addition" class="operation_settings">Addition</label>
+                        <br></br>
+                        <input type="checkbox" id="subtraction" class="operation_checkbox" name="operation" value="1"/>
+                        <label for="subtraction" class="operation_settings">Subtraction</label>
+                        <br></br>
+                        <input type="checkbox" id="multiplication" class="operation_checkbox" name="operation" value="2"/>
+                        <label for="multiplication" class="operation_settings">Multiplication</label>
+                        <br></br>
+                        <input type="checkbox" id="division" class="operation_checkbox" name="operation" value="3"/>
+                        <label for="division" class="operation_settings">Division</label>
+                        <br></br>
                     </div>
                 </form>
 

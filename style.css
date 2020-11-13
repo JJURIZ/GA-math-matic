@@ -370,13 +370,13 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 #settings_content {
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 3fr 1fr;
   grid-template-areas:
-    "title"
-    "settings"
-    "footer";
-  width: 30%;
+    "title title"
+    "settings_one settings_two"
+    "footer footer";
+  width: 60%;
   height: 30rem;
 }
 
@@ -391,7 +391,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .settings_form {
-  grid-area: settings;
+  grid-area: settings_one;
   margin-left: 2rem;
 }
 
@@ -436,6 +436,9 @@ label {
   background-color: #cecbcb;
 }
 
+#operation_settings {
+  grid-area: settings_two;
+}
 /********************************************************************/
 
 /* KEYFRAMES FOR ANIMATION */
