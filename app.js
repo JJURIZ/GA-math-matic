@@ -388,38 +388,38 @@ settingsMaxMultDiv.addEventListener("input", function () {
   }
 });
 
-let operatorArray = [add, subtract, multiply, divide]; // Adds each function to an array in order to allow specific or random operators in a round //
-const resetOperatorArray = [add, subtract, multiply, divide]; // For reset functionality
+// let operatorArray = [add, subtract, multiply, divide]; // Adds each function to an array in order to allow specific or random operators in a round //
+// const resetOperatorArray = [add, subtract, multiply, divide]; // For reset functionality
 
-let operatorIndexes = [];
+// let operatorIndexes = [];
 
-const  additionCheckbox = document.getElementById("addition");
-const  subtractionCheckbox = document.getElementById("subtraction");
-const  multiplicationCheckbox = document.getElementById("multiplication");
-const  divisionCheckbox = document.getElementById("division");
+// const  additionCheckbox = document.getElementById("addition");
+// const  subtractionCheckbox = document.getElementById("subtraction");
+// const  multiplicationCheckbox = document.getElementById("multiplication");
+// const  divisionCheckbox = document.getElementById("division");
 
-additionCheckbox.addEventListener("click", function(){
-  if (addCheck === false) {
-    addCheck = true;
-  } else {
-    addCheck = false;
-  }
-  return addCheck === false ? console.log(`addCheck value is ${addCheck}`) : console.log(`addCheck value is ${addCheck}`);
-})
-subtractionCheckbox.addEventListener("click", function(){
-  console.log(subtractionCheckbox.value);
-})
-multiplicationCheckbox.addEventListener("click", function(){
-  console.log(multiplicationCheckbox.value);
-})
-divisionCheckbox.addEventListener("click", function(){
-  console.log(divisionCheckbox.value);
-})
+// additionCheckbox.addEventListener("click", function(){
+//   if (addCheck === false) {
+//     addCheck = true;
+//   } else {
+//     addCheck = false;
+//   }
+//   return addCheck === false ? console.log(`addCheck value is ${addCheck}`) : console.log(`addCheck value is ${addCheck}`);
+// })
+// subtractionCheckbox.addEventListener("click", function(){
+//   console.log(subtractionCheckbox.value);
+// })
+// multiplicationCheckbox.addEventListener("click", function(){
+//   console.log(multiplicationCheckbox.value);
+// })
+// divisionCheckbox.addEventListener("click", function(){
+//   console.log(divisionCheckbox.value);
+// })
 
-let addCheck = false,
-subCheck = false,
-MultCheck = false,
-divCheck = false;
+// let addCheck = false,
+// subCheck = false,
+// MultCheck = false,
+// divCheck = false;
 
 
 

@@ -376,8 +376,9 @@ input[type="number"]::-webkit-outer-spin-button {
     "title title"
     "settings_one settings_two"
     "footer footer";
-  width: 60%;
+  width: 40%;
   height: 30rem;
+
 }
 
 #settings_header_heading {
