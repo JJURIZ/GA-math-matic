@@ -365,17 +365,23 @@ settingsMinAddSub.addEventListener("input", function () {
   } else {
     settingsUpdateButton.disabled = false;
   }
+});
+settingsMaxAddSub.addEventListener("input", function () {
   if (settingsMaxAddSub.value === "" || settingsMaxAddSub.value < 0) {
     settingsUpdateButton.disabled = true;
   } else {
     settingsUpdateButton.disabled = false;
   }
+});
+settingsMinMultDiv.addEventListener("input", function () {
   if (settingsMinMultDiv.value === "" || settingsMinMultDiv.value < 0) {
     settingsUpdateButton.disabled = true;
   } else {
     settingsUpdateButton.disabled = false;
   }
-  if (settingsMaxMultDiv.value === "" || settingsMaxMultDiv.value < 0) {
+});
+settingsMaxMultDiv.addEventListener("input", function () {
+  if (settingsMinAddSub.value === "" || settingsMinAddSub.value < 0) {
     settingsUpdateButton.disabled = true;
   } else {
     settingsUpdateButton.disabled = false;
