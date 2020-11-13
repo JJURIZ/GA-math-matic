@@ -365,6 +365,21 @@ settingsMinAddSub.addEventListener("input", function () {
   } else {
     settingsUpdateButton.disabled = false;
   }
+  if (settingsMaxAddSub.value === "" || settingsMaxAddSub.value < 0) {
+    settingsUpdateButton.disabled = true;
+  } else {
+    settingsUpdateButton.disabled = false;
+  }
+  if (settingsMinMultDiv.value === "" || settingsMinMultDiv.value < 0) {
+    settingsUpdateButton.disabled = true;
+  } else {
+    settingsUpdateButton.disabled = false;
+  }
+  if (settingsMaxMultDiv.value === "" || settingsMaxMultDiv.value < 0) {
+    settingsUpdateButton.disabled = true;
+  } else {
+    settingsUpdateButton.disabled = false;
+  }
 });
 
 let operatorArray = [add, subtract, multiply, divide]; // Adds each function to an array in order to allow specific or random operators in a round //
