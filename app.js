@@ -29,7 +29,6 @@ const num1 = document.getElementById("num1"),
   resetValueMinDifficultyMultiplyDivide = 0,
   resetValueMaxDifficultyMultiplyDivide = 6;
 
-
 let value1,
   value2,
   value3,
@@ -51,7 +50,7 @@ let answerArray = [],
   questionArray = [],
   isCorrectArray = [],
   operations = ["+", "-", "*", "/"];
-  
+
 /****************FUNCTIONS****************/
 
 /*RANDOM NUMBER GENERATOR*/
@@ -94,16 +93,14 @@ const divide = () => {
   computerAnswer = value3;
 };
 
+let operatorArray = [add, subtract, multiply, divide]; // Adds each function to an array in order to allow specific or random operators in a round //
+
 /*COMPARE USER ANSWER TO COMPUTER ANSWER*/
 const checkAnswer = () => {
   if (computerAnswer === parseInt(userAnswer)) {
     points += 1;
   }
 };
-
-const setFocus = () => {
-  answer.focus();
-}
 
 /*GAME OVER CONDITION CHECK*/
 const gameOver = () => {
@@ -116,7 +113,7 @@ const gameOver = () => {
 /*ASSIGNS OPERATIONS BASED ON CURRENT LEVEL*/
 const roundPicker = () => {
   if (roundNumber === 1) {
-    return operatorArray[1]();
+    return operatorArray[0]();
   } else if (roundNumber === 2) {
     return operatorArray[1]();
   } else if (roundNumber === 3) {
@@ -131,10 +128,6 @@ const roundPicker = () => {
     return operatorArray[randy(0, 4)]();
   }
 };
-
-/*
-return operatorArray(randy(0,operatorArray.length-1))
-*/
 
 /*GENERATE A NEW PROBLEM FOR PLAYER */
 const generateProblem = () => {
@@ -230,36 +223,21 @@ const startTimer = () => {
 
 /*ADJUSTS DIFFICULTY (I.E. AS LEVEL INCREASES, OPERAND VALUES INCREASE)*/
 const difficultyLevel = (round) => {
-  if (round === 1) {
-    minDifficultyLevelAddSub = 0;
-    maxDifficultyLevelAddSub = 10;
-    minDifficultyMultiplyDivide = 0;
-    maxDifficultyMultiplyDivide = 6;
-  } else if (round === 8) {
+  if (round === 8) {
+    minDifficultyLevelAddSub = 2;
+    maxDifficultyLevelAddSub = 15;
+    minDifficultyMultiplyDivide = 2;
+    maxDifficultyMultiplyDivide = 9;
+  } else if (round === 13) {
     minDifficultyLevelAddSub = 5;
     maxDifficultyLevelAddSub = 15;
     minDifficultyMultiplyDivide = 4;
     maxDifficultyMultiplyDivide = 11;
-  } else if (round === 12) {
-    minDifficultyLevelAddSub = 7;
-    maxDifficultyLevelAddSub = 20;
-    minDifficultyMultiplyDivide = 6;
-    maxDifficultyMultiplyDivide = 15;
-  } else if (round === 16) {
-    minDifficultyLevelAddSub = 7;
-    maxDifficultyLevelAddSub = 25;
-    minDifficultyMultiplyDivide = 6;
-    maxDifficultyMultiplyDivide = 20;
-  } else if (round === 21) {
+  } else if (round === 19) {
     minDifficultyLevelAddSub = 7;
     maxDifficultyLevelAddSub = 30;
     minDifficultyMultiplyDivide = 6;
-    maxDifficultyMultiplyDivide = 25;
-  } else if (round === 99) {
-    minDifficultyLevelAddSub = 2;
-    maxDifficultyLevelAddSub = 99;
-    minDifficultyMultiplyDivide = 2;
-    maxDifficultyMultiplyDivide = 99;
+    maxDifficultyMultiplyDivide = 15;
   }
 };
 
@@ -267,7 +245,6 @@ const difficultyLevel = (round) => {
 let startRoundTimer = function () {
   let roundTimer = setInterval(function () {
     roundCountdownDiv.innerText = roundCountdown;
-    setFocus();
     roundCountdown -= 1;
 
     if (roundCountdown === -1) {
@@ -360,77 +337,9 @@ settingsResetButton.addEventListener("click", function () {
 
 /*CUSTOM SETTING - PREVENTS USER FROM LEAVING VALUE BLANK (RESULTING IN NaN)*/
 settingsMinAddSub.addEventListener("input", function () {
-  if (settingsMinAddSub.value === "" || settingsMinAddSub.value < 0) {
+  if (settingsMinAddSub.value === "") {
     settingsUpdateButton.disabled = true;
   } else {
     settingsUpdateButton.disabled = false;
   }
 });
-settingsMaxAddSub.addEventListener("input", function () {
-  if (settingsMaxAddSub.value === "" || settingsMaxAddSub.value < 0) {
-    settingsUpdateButton.disabled = true;
-  } else {
-    settingsUpdateButton.disabled = false;
-  }
-});
-settingsMinMultDiv.addEventListener("input", function () {
-  if (settingsMinMultDiv.value === "" || settingsMinMultDiv.value < 0) {
-    settingsUpdateButton.disabled = true;
-  } else {
-    settingsUpdateButton.disabled = false;
-  }
-});
-settingsMaxMultDiv.addEventListener("input", function () {
-  if (settingsMinAddSub.value === "" || settingsMinAddSub.value < 0) {
-    settingsUpdateButton.disabled = true;
-  } else {
-    settingsUpdateButton.disabled = false;
-  }
-});
-
-// let operatorArray = [add, subtract, multiply, divide]; // Adds each function to an array in order to allow specific or random operators in a round //
-// const resetOperatorArray = [add, subtract, multiply, divide]; // For reset functionality
-
-// let operatorIndexes = [];
-
-// const  additionCheckbox = document.getElementById("addition");
-// const  subtractionCheckbox = document.getElementById("subtraction");
-// const  multiplicationCheckbox = document.getElementById("multiplication");
-// const  divisionCheckbox = document.getElementById("division");
-
-// additionCheckbox.addEventListener("click", function(){
-//   if (addCheck === false) {
-//     addCheck = true;
-//   } else {
-//     addCheck = false;
-//   }
-//   return addCheck === false ? console.log(`addCheck value is ${addCheck}`) : console.log(`addCheck value is ${addCheck}`);
-// })
-// subtractionCheckbox.addEventListener("click", function(){
-//   console.log(subtractionCheckbox.value);
-// })
-// multiplicationCheckbox.addEventListener("click", function(){
-//   console.log(multiplicationCheckbox.value);
-// })
-// divisionCheckbox.addEventListener("click", function(){
-//   console.log(divisionCheckbox.value);
-// })
-
-// let addCheck = false,
-// subCheck = false,
-// MultCheck = false,
-// divCheck = false;
-
-
-
-
-
-/*NICE TO HAVES*/
-/*
---If user misses 50% of the current round problems cannot proceed. (either game over or user stuck at that level) NOT DONE
---Allow player to choose Practice Mode in which they can select an operation to focus on. 
---Display questions answered right/wrong. Arrays are already created for this information. 
-*/
-
-
-
