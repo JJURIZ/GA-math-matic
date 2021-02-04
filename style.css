@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .container {
@@ -19,8 +19,9 @@ h1 {
   font-size: 3rem;
 }
 
+
 .header {
-  font-family: "Bangers", cursive;
+  font-family: 'Bangers', cursive;
   text-align: center;
 }
 
@@ -31,16 +32,16 @@ h1 {
   justify-items: center;
   align-items: center;
   text-overflow: ellipsis;
-  color: transparent;
+  color: transparent
 }
 
 .header_main_title {
   grid-area: title;
   font-size: 12rem;
-  background: -webkit-linear-gradient(red, blue);
+  background: -webkit-linear-gradient( red, blue);
   -webkit-background-clip: text;
   animation-name: moveInTop;
-  animation-duration: 5s;
+  animation-duration: 5s; 
   padding: 2rem;
 }
 
@@ -56,7 +57,7 @@ h1 {
 
 #instructions_link {
   grid-area: instructions;
-  font-family: "Bangers", cursive;
+  font-family: 'Bangers', cursive;
   justify-content: right;
 }
 
@@ -80,7 +81,7 @@ h1 {
 #player_points,
 #time_remaining {
   font-size: 2rem;
-  font-family: "Bangers", cursive;
+  font-family: 'Bangers', cursive;
 }
 
 .points {
@@ -107,7 +108,7 @@ h1 {
   width: 80vw;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
-  grid-template-areas: "num1 operator num2 equals num3";
+  grid-template-areas: "num1 operator num2 equals num3";                     
   gap: 1rem;
 }
 
@@ -172,7 +173,7 @@ h1 {
 }
 
 .answer:after {
-  content: "";
+  content: '';
   width: 20px;
   height: 2px;
   background: black;
@@ -181,10 +182,10 @@ h1 {
 }
 
 /* REMOVES INCREMENT/DECREMENT FROM INPUT */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 
 .start_container {
@@ -196,11 +197,11 @@ input[type="number"]::-webkit-outer-spin-button {
 #start_button,
 #newgame_button {
   font-size: 5rem;
-  font-family: "Bangers", cursive;
+  font-family: 'Bangers', cursive;
   border: none;
   background-color: white;
   animation-name: moveInBottom;
-  animation-duration: 5s;
+  animation-duration: 5s; 
   outline: none;
   cursor: pointer;
 }
@@ -225,7 +226,7 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: center;
   border-radius: 10px;
   font-size: 10rem;
-  font-family: "Bangers", cursive;
+  font-family: 'Bangers', cursive;
   color: green;
 }
 
@@ -234,18 +235,18 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /********************************************************************/
-/* INSTRUCTION POP UP */
+/* INSTRUCTION POP UP STYLE */
 
-#instructions {
+#instructions{
   height: 100vh;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 80%);
+  background-color: rgba(0,0,0, 80%);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s;
+  transition: all .3s;
   overflow: hidden;
 }
 
@@ -257,19 +258,19 @@ input[type="number"]::-webkit-outer-spin-button {
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-areas:
-    "title"
-    "rules"
-    "play"
-    "win"
-    "footer";
+  grid-template-rows: repeat(5, 1fr );
+  grid-template-areas: "title"
+                       "rules"
+                       "play"
+                       "win"
+                       "footer"
+                       ;
   gap: 2rem;
   width: 75%;
   height: 50rem;
   background-color: white;
   transform: translate(-50%, -50%);
-  border-radius: 0.5rem;
+  border-radius: .5rem;
   overflow: hidden;
 }
 
@@ -284,8 +285,8 @@ input[type="number"]::-webkit-outer-spin-button {
   grid-area: title;
   background-color: black;
   color: white;
-  padding: 0.5rem 0 0.5rem 2.5rem;
-  font-family: "Bangers", cursive;
+  padding: .5rem 0 .5rem 2.5rem;
+  font-family: 'Bangers', cursive;
   position: relative;
 }
 #instructions_header_heading {
@@ -301,24 +302,24 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 #instructions_win {
-  grid-area: win;
+grid-area: win;
 }
 
 #footer {
-  grid-area: footer;
-  background-color: black;
+grid-area: footer;
+background-color: black;
 }
 
 #instructions_rules h2,
-#instructions_play h2,
+#instructions_play h2, 
 #instructions_win h2 {
-  font-family: "Bangers", cursive;
+  font-family: 'Bangers', cursive;
   font-size: 2rem;
   padding-left: 1rem;
 }
 
 #instructions_rules p,
-#instructions_play p,
+#instructions_play p, 
 #instructions_win p {
   font-size: 1.5rem;
   padding: 0 2rem 0 2rem;
@@ -345,7 +346,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 3.5rem;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s;
+  transition: all .3s;
 }
 
 #instructions_close:hover,
@@ -354,36 +355,35 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /********************************************************************/
-/* SETTINGS POP UP */
+/* SETTINGS POP UP STYLE */
 
-#settings {
+#settings{
   height: 100vh;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 80%);
+  background-color: rgba(0,0,0, 80%);
   opacity: 1;
   visibility: hidden;
-  transition: all 0.3s;
+  transition: all .3s;
   overflow: hidden;
 }
 
 #settings_content {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr 3fr 1fr;
-  grid-template-areas:
-    "title title"
-    "settings_one settings_two"
-    "footer footer";
-  width: 40%;
-  height: 30rem;
-
+  grid-template-areas: "title"
+                       "settings"
+                       "footer"
+                       ;
+  width: 30%;
+  height:30rem;
 }
 
 #settings_header_heading {
   position: absolute;
-  padding-top: 0.5rem;
+  padding-top: .5rem;
 }
 
 #settings_close:link,
@@ -392,7 +392,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .settings_form {
-  grid-area: settings_one;
+  grid-area: settings;
   margin-left: 2rem;
 }
 
@@ -406,11 +406,12 @@ label {
 #max_mult_div {
   width: 5rem;
   height: 2rem;
-  border-radius: 0.5rem;
+  border-radius: .5rem;
   margin-left: 1rem;
   font-size: 1.5rem;
   text-align: center;
 }
+
 
 .settings_buttons {
   grid-area: footer;
@@ -426,7 +427,7 @@ label {
   width: 13rem;
   height: 2.5rem;
   font-size: 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: .5rem;
   border: none;
   align-self: center;
   outline: none;
@@ -437,30 +438,21 @@ label {
   background-color: #cecbcb;
 }
 
-#operation_settings {
-  grid-area: settings_two;
-}
 /********************************************************************/
 
 /* KEYFRAMES FOR ANIMATION */
 @keyframes moveInBottom {
   0% {
     opacity: 0;
-    transform: translateY(10rem);
-  }
+    transform: translateY(10rem); }
   100% {
     opacity: 1;
-    transform: translate(0rem);
-  }
-}
+    transform: translate(0rem); } }
 
 @keyframes moveInTop {
   0% {
-    opacity: 0;
-    transform: translateY(-10rem);
-  }
+      opacity: 0;
+      transform: translateY(-10rem); }
   100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
+      opacity: 1;
+      transform: translate(0); } }
